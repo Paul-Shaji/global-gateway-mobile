@@ -8,6 +8,7 @@ import Index from "./pages/Index.tsx";
 import CountryPage from "./pages/CountryPage.tsx";
 import UniversityPage from "./pages/UniversityPage.tsx";
 import SearchPage from "./pages/SearchPage.tsx";
+import StudentStoriesPage from "./pages/StudentStoriesPage.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
