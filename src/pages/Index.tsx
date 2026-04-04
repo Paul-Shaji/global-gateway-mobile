@@ -218,4 +218,54 @@ const Index = () => {
   );
 };
 
+function DestinationSlideshow({ countries }: { countries: typeof popularCountries }) {
+  const [offset, setOffset] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const itemWidth = 116; // w-[100px] + gap
+  const maxOffset = Math.max(0, countries.length * itemWidth - 400);
+
+  useEffect(() => {
+    if (paused) return;
+    const interval = setInterval(() => {
+      setOffset(prev => (prev >= maxOffset ? 0 : prev + itemWidth));
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [paused, maxOffset]);
+
+  return (
+    <div
+      className="overflow-hidden -mx-4 px-4"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onTouchStart={() => setPaused(true)}
+      onTouchEnd={() => setPaused(false)}
+    >
+      <div
+        className="flex gap-3 transition-transform duration-700 ease-in-out"
+        style={{ transform: `translateX(-${offset}px)` }}
+      >
+        {countries.map((country, i) => (
+          <motion.div
+            key={country.id}
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.1 * i }}
+          >
+            <Link
+              to={`/country/${country.id}`}
+              className="flex flex-col items-center w-[100px] md:w-[120px] shrink-0 group"
+            >
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-secondary flex items-center justify-center overflow-hidden group-hover:shadow-card transition-shadow">
+                <img src={getFlagUrl(country.id, 160)} alt={country.name} className="w-full h-full object-cover" />
+              </div>
+              <p className="mt-2 text-sm font-medium text-foreground text-center">{country.name}</p>
+              <p className="text-xs text-muted-foreground">{country.programCount} programs</p>
+            </Link>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default Index;
