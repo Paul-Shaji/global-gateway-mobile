@@ -7,6 +7,15 @@ import { popularCountries } from "@/data/countries";
 import { featuredUniversities, programs } from "@/data/universities";
 import { getFlagUrl, getFlagUrlFromName } from "@/lib/utils";
 import heroImage from "@/assets/hero-study-abroad.jpg";
+import studentSarah from "@/assets/student-sarah.jpg";
+import studentJames from "@/assets/student-james.jpg";
+import studentPriya from "@/assets/student-priya.jpg";
+
+const studentStories = [
+  { name: "Sarah Chen", photo: studentSarah, country: "France", headline: "Paris changed the way I see the world", university: "Sorbonne University", rating: 5 },
+  { name: "James Nakamura", photo: studentJames, country: "United Kingdom", headline: "Oxford exceeded every expectation I had", university: "University of Oxford", rating: 5 },
+  { name: "Priya Sharma", photo: studentPriya, country: "Japan", headline: "Japan taught me balance between tradition and innovation", university: "University of Tokyo", rating: 5 },
+];
 
 const Index = () => {
   return (
