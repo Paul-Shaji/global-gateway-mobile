@@ -61,7 +61,7 @@ const CountryPage = () => {
         <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
           <div className="bg-card rounded-xl p-5 shadow-card">
             <div className="flex items-center gap-3">
-              <span className="text-4xl">{country.flag}</span>
+              <img src={getFlagUrl(country.id, 80)} alt={country.name} className="w-12 h-9 rounded object-cover" />
               <div>
                 <h1 className="font-display text-2xl md:text-3xl text-foreground">{country.name}</h1>
                 <p className="text-muted-foreground italic">"{country.tagline}"</p>
