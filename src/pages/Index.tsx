@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Search, MapPin, ArrowRight, Star, GraduationCap, Globe, Users } from "lucide-react";
+import { Search, MapPin, ArrowRight, Star, GraduationCap, Globe, Users, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { popularCountries } from "@/data/countries";
 import { featuredUniversities, programs } from "@/data/universities";
