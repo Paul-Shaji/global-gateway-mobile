@@ -84,28 +84,7 @@ const Index = () => {
               View all <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 snap-x snap-mandatory scrollbar-hide">
-            {popularCountries.map((country, i) => (
-              <motion.div
-                key={country.id}
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.1 * i }}
-                className="snap-start"
-              >
-                <Link
-                  to={`/country/${country.id}`}
-                  className="flex flex-col items-center w-[100px] md:w-[120px] shrink-0 group"
-                >
-                  <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-secondary flex items-center justify-center text-3xl md:text-4xl group-hover:shadow-card transition-shadow">
-                    {country.flag}
-                  </div>
-                  <p className="mt-2 text-sm font-medium text-foreground text-center">{country.name}</p>
-                  <p className="text-xs text-muted-foreground">{country.programCount} programs</p>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
+          <DestinationSlideshow countries={popularCountries} />
         </div>
       </section>
 
