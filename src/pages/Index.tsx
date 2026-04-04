@@ -105,11 +105,11 @@ const Index = () => {
                   className="block bg-card rounded-xl p-5 shadow-soft hover:shadow-card transition-shadow"
                 >
                   <div className="flex items-start gap-3">
-                    <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center text-2xl shrink-0">
-                      {uni.countryFlag}
+                    <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center shrink-0 overflow-hidden">
+                       <img src={getFlagUrlFromName(uni.country, 80)} alt={uni.country} className="w-full h-full object-cover" />
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-display text-lg text-foreground">{uni.name}</h3>
+                     <div className="flex-1 min-w-0">
+                       <h3 className="font-display text-lg text-foreground">{uni.name}</h3>
                       <p className="text-sm text-muted-foreground flex items-center gap-1">
                         <MapPin className="h-3 w-3" /> {uni.city}, {uni.country}
                       </p>
