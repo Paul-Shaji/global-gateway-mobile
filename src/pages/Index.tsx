@@ -1,12 +1,21 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Search, MapPin, ArrowRight, Star, GraduationCap, Globe, Users } from "lucide-react";
+import { Search, MapPin, ArrowRight, Star, GraduationCap, Globe, Users, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { popularCountries } from "@/data/countries";
 import { featuredUniversities, programs } from "@/data/universities";
 import { getFlagUrl, getFlagUrlFromName } from "@/lib/utils";
 import heroImage from "@/assets/hero-study-abroad.jpg";
+import studentSarah from "@/assets/student-sarah.jpg";
+import studentJames from "@/assets/student-james.jpg";
+import studentPriya from "@/assets/student-priya.jpg";
+
+const studentStories = [
+  { name: "Sarah Chen", photo: studentSarah, country: "France", headline: "Paris changed the way I see the world", university: "Sorbonne University", rating: 5 },
+  { name: "James Nakamura", photo: studentJames, country: "United Kingdom", headline: "Oxford exceeded every expectation I had", university: "University of Oxford", rating: 5 },
+  { name: "Priya Sharma", photo: studentPriya, country: "Japan", headline: "Japan taught me balance between tradition and innovation", university: "University of Tokyo", rating: 5 },
+];
 
 const Index = () => {
   return (
@@ -161,6 +170,53 @@ const Index = () => {
             <Button variant="outline" className="border-border text-foreground" asChild>
               <Link to="/programs">View All Programs <ArrowRight className="h-4 w-4 ml-2" /></Link>
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Student Stories */}
+      <section className="section-padding bg-secondary/50">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="font-display text-2xl md:text-3xl text-foreground">Student Stories</h2>
+            <Link to="/stories" className="text-sm font-medium text-accent flex items-center gap-1">
+              View all <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {studentStories.map((story, i) => (
+              <motion.div
+                key={story.name}
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.1 * i }}
+              >
+                <Link
+                  to="/stories"
+                  className="block bg-card rounded-xl p-5 shadow-soft hover:shadow-card transition-shadow border border-border"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <img src={story.photo} alt={story.name} className="w-12 h-12 rounded-full object-cover border-2 border-accent/20" width={48} height={48} />
+                    <div>
+                      <p className="font-semibold text-foreground text-sm">{story.name}</p>
+                      <p className="text-xs text-muted-foreground">{story.university}</p>
+                    </div>
+                  </div>
+                  <div className="relative">
+                    <Quote className="h-4 w-4 text-accent/30 absolute -top-0.5 -left-0.5" />
+                    <p className="font-display text-base text-foreground italic pl-4 leading-snug">"{story.headline}"</p>
+                  </div>
+                  <div className="mt-3 flex items-center justify-between">
+                    <span className="text-xs text-muted-foreground">{story.country}</span>
+                    <div className="flex gap-0.5">
+                      {Array.from({ length: story.rating }).map((_, j) => (
+                        <Star key={j} className="h-3 w-3 text-gold fill-gold" />
+                      ))}
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
