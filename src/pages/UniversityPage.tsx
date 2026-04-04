@@ -30,7 +30,7 @@ const UniversityPage = () => {
 
   const uniPrograms = programs.filter(p => p.universityId === id);
   const heroImg = uniImages[id || ""] || sorbonneImg;
-  const tabs = ["About", "Programs", "Campus", "Costs"];
+  const tabs = ["About", "Programs", "Campus"];
 
   const reviews = [
     { name: "Sarah M.", rating: 5, text: "An incredible experience that changed my perspective on education and life. The faculty was welcoming and the city was magical.", term: "Spring 2025" },
