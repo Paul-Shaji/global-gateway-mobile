@@ -1,9 +1,11 @@
+import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Search, MapPin, ArrowRight, Star, GraduationCap, Globe, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { popularCountries } from "@/data/countries";
 import { featuredUniversities, programs } from "@/data/universities";
+import { getFlagUrl, getFlagUrlFromName } from "@/lib/utils";
 import heroImage from "@/assets/hero-study-abroad.jpg";
 
 const Index = () => {
