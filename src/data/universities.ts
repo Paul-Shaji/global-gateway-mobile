@@ -22,7 +22,6 @@ export interface Program {
   country: string;
   countryId: string;
   duration: string;
-  cost: string;
   term: string;
   language: string;
   category: string;
