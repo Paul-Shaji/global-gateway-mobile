@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ChevronLeft, Heart, Star, MapPin, Calendar, Users, Award, GraduationCap } from "lucide-react";
+import { getFlagUrlFromName } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { universities, programs } from "@/data/universities";
 import sorbonneImg from "@/assets/sorbonne.jpg";
