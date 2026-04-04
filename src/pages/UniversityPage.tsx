@@ -143,7 +143,7 @@ const UniversityPage = () => {
                     <span className="px-2 py-0.5 rounded bg-secondary text-secondary-foreground">{p.duration}</span>
                     <span className="px-2 py-0.5 rounded bg-secondary text-secondary-foreground">{p.term}</span>
                   </div>
-                  <p className="mt-2 font-bold text-foreground">{p.cost}</p>
+                  <p className="mt-2 text-sm text-muted-foreground">{p.language}</p>
                 </Link>
               )) : (
                 <p className="text-muted-foreground">No programs currently listed.</p>
