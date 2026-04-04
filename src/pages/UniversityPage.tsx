@@ -57,9 +57,9 @@ const UniversityPage = () => {
 
       {/* Logo & info */}
       <div className="px-4 pt-4 text-center">
-        <div className="w-20 h-20 mx-auto rounded-2xl bg-secondary flex items-center justify-center text-4xl shadow-soft">
-          {uni.countryFlag}
-        </div>
+        <div className="w-20 h-20 mx-auto rounded-2xl bg-secondary flex items-center justify-center shadow-soft overflow-hidden">
+           <img src={getFlagUrlFromName(uni.country, 160)} alt={uni.country} className="w-full h-full object-cover" />
+         </div>
         <h1 className="font-display text-2xl text-foreground mt-3">{uni.name}</h1>
         <p className="text-muted-foreground flex items-center justify-center gap-1 mt-1">
           <MapPin className="h-4 w-4" /> {uni.city}, {uni.country}
