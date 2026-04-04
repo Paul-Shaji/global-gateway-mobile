@@ -202,8 +202,8 @@ const StudentStoriesPage = () => {
                   : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
               }`}
             >
-              <span>{filter.flag}</span>
-              <span>{filter.name}</span>
+               <img src={filter.id === "all" ? "https://flagcdn.com/w20/un.png" : getFlagUrl(filter.id, 20)} alt={filter.name} className="w-5 h-3.5 rounded-sm object-cover" />
+               <span>{filter.name}</span>
             </button>
           ))}
         </div>
