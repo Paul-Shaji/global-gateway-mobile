@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Search, X, ChevronLeft, MapPin, Star } from "lucide-react";
+import { getFlagUrl, getFlagUrlFromName } from "@/lib/utils";
 import { allCountries } from "@/data/countries";
 import { universities } from "@/data/universities";
 import { programs } from "@/data/universities";
