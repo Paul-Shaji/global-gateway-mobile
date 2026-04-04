@@ -89,7 +89,7 @@ const SearchPage = () => {
                     to={`/country/${c.id}`}
                     className="flex items-center gap-3 py-3 px-2 hover:bg-secondary rounded-lg transition-colors touch-target"
                   >
-                    <span className="text-xl">{c.flag}</span>
+                    <img src={getFlagUrl(c.id, 40)} alt={c.name} className="w-8 h-6 rounded object-cover" />
                     <div className="flex-1">
                       <p className="font-medium text-foreground">{c.name}</p>
                       <p className="text-xs text-muted-foreground">{c.programCount} programs</p>
