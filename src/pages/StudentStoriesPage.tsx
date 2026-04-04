@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, Star, Quote, MapPin, Calendar, Filter, X } from "lucide-react";
+import { getFlagUrl } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 import studentSarah from "@/assets/student-sarah.jpg";
