@@ -111,7 +111,7 @@ const SearchPage = () => {
                     to={`/university/${u.id}`}
                     className="flex items-center gap-3 py-3 px-2 hover:bg-secondary rounded-lg transition-colors touch-target"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-lg">{u.countryFlag}</div>
+                    <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center overflow-hidden"><img src={getFlagUrlFromName(u.country, 80)} alt={u.country} className="w-full h-full object-cover" /></div>
                     <div className="flex-1">
                       <p className="font-medium text-foreground">{u.name}</p>
                       <p className="text-xs text-muted-foreground flex items-center gap-1">
