@@ -106,12 +106,12 @@ const CountryPage = () => {
                 to={`/program/${p.id}`}
                 className="block bg-secondary/50 rounded-lg p-4 hover:bg-secondary transition-colors"
               >
-                <h4 className="font-semibold text-foreground">{p.name}</h4>
+                 <h4 className="font-semibold text-foreground">{p.name}</h4>
                 <p className="text-sm text-muted-foreground">{p.university}</p>
                 <div className="mt-2 flex items-center gap-3 text-sm">
-                  <span className="font-medium text-foreground">{p.cost}</span>
-                  <span className="text-muted-foreground">•</span>
-                  <span className="text-muted-foreground">{p.term}</span>
+                   <span className="text-muted-foreground">{p.duration}</span>
+                   <span className="text-muted-foreground">•</span>
+                   <span className="text-muted-foreground">{p.term}</span>
                 </div>
               </Link>
             )) : (
