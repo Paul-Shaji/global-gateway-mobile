@@ -78,7 +78,6 @@ const CountryPage = () => {
           {[
             { icon: GraduationCap, label: "Programs", value: country.programCount },
             { icon: Building2, label: "Universities", value: country.universityCount },
-            { icon: DollarSign, label: "Avg Cost", value: "€8K/sem" },
             { icon: FileText, label: "Visa", value: "Required" },
           ].map(stat => (
             <div key={stat.label} className="snap-start shrink-0 bg-card rounded-xl p-4 shadow-soft border border-border min-w-[120px] text-center">
