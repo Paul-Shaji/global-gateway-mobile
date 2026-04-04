@@ -129,9 +129,9 @@ const CountryPage = () => {
                 to={`/university/${u.id}`}
                 className="shrink-0 w-[200px] bg-secondary/50 rounded-lg p-4 hover:bg-secondary transition-colors"
               >
-                <div className="w-10 h-10 rounded-lg bg-card flex items-center justify-center text-xl mb-2">
-                  {u.countryFlag}
-                </div>
+                <div className="w-10 h-10 rounded-lg bg-card flex items-center justify-center overflow-hidden mb-2">
+                   <img src={getFlagUrlFromName(u.country, 80)} alt={u.country} className="w-full h-full object-cover" />
+                 </div>
                 <h4 className="font-semibold text-foreground text-sm">{u.name}</h4>
                 <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
                   <Star className="h-3 w-3 text-gold fill-gold" /> {u.rating} • {u.programCount} programs

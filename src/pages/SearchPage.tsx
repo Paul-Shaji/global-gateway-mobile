@@ -139,9 +139,9 @@ const SearchPage = () => {
                   >
                     <h4 className="font-semibold text-foreground">{p.name}</h4>
                     <p className="text-sm text-muted-foreground">{p.university}</p>
-                    <div className="mt-1 flex items-center gap-2 text-sm">
-                      <span className="font-medium text-foreground">{p.cost}</span>
-                      <span className="text-muted-foreground">• {p.term}</span>
+                     <div className="mt-1 flex items-center gap-2 text-sm">
+                       <span className="text-muted-foreground">{p.duration}</span>
+                       <span className="text-muted-foreground">• {p.term}</span>
                     </div>
                   </Link>
                 ))}

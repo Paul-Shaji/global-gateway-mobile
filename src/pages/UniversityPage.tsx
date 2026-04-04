@@ -161,22 +161,6 @@ const UniversityPage = () => {
               </p>
             </div>
           )}
-          {activeTab === 3 && (
-            <div className="space-y-4">
-              <div className="bg-card rounded-lg p-4 border border-border">
-                <h4 className="font-semibold text-foreground">Tuition & Fees</h4>
-                <p className="text-muted-foreground text-sm mt-1">Varies by program. Contact us for detailed pricing.</p>
-              </div>
-              <div className="bg-card rounded-lg p-4 border border-border">
-                <h4 className="font-semibold text-foreground">Accommodation</h4>
-                <p className="text-muted-foreground text-sm mt-1">€600 - €1,200/month depending on location and type.</p>
-              </div>
-              <div className="bg-card rounded-lg p-4 border border-border">
-                <h4 className="font-semibold text-foreground">Living Expenses</h4>
-                <p className="text-muted-foreground text-sm mt-1">Estimated €400 - €800/month for food, transport, and personal expenses.</p>
-              </div>
-            </div>
-          )}
         </motion.div>
       </div>
 

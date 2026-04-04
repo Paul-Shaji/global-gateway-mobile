@@ -280,8 +280,8 @@ function StoryCard({ story, expanded, onToggle }: { story: Story; expanded: bool
             <MapPin className="h-3 w-3" /> {story.university}
           </p>
           <div className="mt-1 flex items-center gap-2">
-            <span className="text-sm">{story.countryFlag}</span>
-            <span className="text-xs text-muted-foreground">{story.country}</span>
+            <img src={getFlagUrl(story.countryId, 20)} alt={story.country} className="w-5 h-3.5 rounded-sm object-cover" />
+             <span className="text-xs text-muted-foreground">{story.country}</span>
             <span className="text-xs text-muted-foreground">•</span>
             <span className="text-xs text-muted-foreground flex items-center gap-0.5">
               <Calendar className="h-3 w-3" /> {story.term}

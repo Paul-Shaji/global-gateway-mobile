@@ -296,7 +296,7 @@ function CountryItem({ country, onClick }: { country: Country; onClick: () => vo
       onClick={onClick}
       className="w-full flex items-center gap-3 px-4 py-3 min-h-[56px] hover:bg-secondary transition-colors"
     >
-      <span className="text-xl">{country.flag}</span>
+      <img src={getFlagUrl(country.id, 40)} alt={country.name} className="w-8 h-6 rounded object-cover" />
       <span className="flex-1 text-left font-medium text-foreground">{country.name}</span>
       <ChevronRight className="h-4 w-4 text-muted-foreground" />
     </button>

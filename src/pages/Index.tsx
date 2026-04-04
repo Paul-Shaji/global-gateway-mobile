@@ -150,10 +150,9 @@ const Index = () => {
                       <span className="text-xs px-2 py-1 rounded-md bg-secondary text-secondary-foreground">{program.language}</span>
                     </div>
                   </div>
-                  <div className="text-right shrink-0">
-                    <p className="font-bold text-foreground">{program.cost}</p>
-                    <p className="text-xs text-muted-foreground">{program.category}</p>
-                  </div>
+                   <div className="text-right shrink-0">
+                     <p className="text-xs text-muted-foreground">{program.category}</p>
+                   </div>
                 </div>
               </Link>
             ))}
