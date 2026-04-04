@@ -5,6 +5,7 @@ import { Menu, X, Search, ChevronRight, ChevronLeft, GraduationCap } from "lucid
 import { allCountries, regions, type Country } from "@/data/countries";
 import { universities, type University } from "@/data/universities";
 import { Button } from "@/components/ui/button";
+import { getFlagUrl, getFlagUrlFromName } from "@/lib/utils";
 
 type NavPanel = "main" | "countries" | "universities";
 
