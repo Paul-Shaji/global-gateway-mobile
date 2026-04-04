@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ChevronLeft, Share2, MapPin, Star, GraduationCap, Building2, DollarSign, FileText } from "lucide-react";
+import { ChevronLeft, Share2, MapPin, Star, GraduationCap, Building2, FileText } from "lucide-react";
+import { getFlagUrl, getFlagUrlFromName } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { allCountries } from "@/data/countries";
 import { universities, programs } from "@/data/universities";
