@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ChevronLeft, Heart, Star, MapPin, Calendar, Users, Award, GraduationCap } from "lucide-react";
+import { getFlagUrlFromName } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { universities, programs } from "@/data/universities";
 import sorbonneImg from "@/assets/sorbonne.jpg";
@@ -29,7 +30,7 @@ const UniversityPage = () => {
 
   const uniPrograms = programs.filter(p => p.universityId === id);
   const heroImg = uniImages[id || ""] || sorbonneImg;
-  const tabs = ["About", "Programs", "Campus", "Costs"];
+  const tabs = ["About", "Programs", "Campus"];
 
   const reviews = [
     { name: "Sarah M.", rating: 5, text: "An incredible experience that changed my perspective on education and life. The faculty was welcoming and the city was magical.", term: "Spring 2025" },
@@ -56,9 +57,9 @@ const UniversityPage = () => {
 
       {/* Logo & info */}
       <div className="px-4 pt-4 text-center">
-        <div className="w-20 h-20 mx-auto rounded-2xl bg-secondary flex items-center justify-center text-4xl shadow-soft">
-          {uni.countryFlag}
-        </div>
+        <div className="w-20 h-20 mx-auto rounded-2xl bg-secondary flex items-center justify-center shadow-soft overflow-hidden">
+           <img src={getFlagUrlFromName(uni.country, 160)} alt={uni.country} className="w-full h-full object-cover" />
+         </div>
         <h1 className="font-display text-2xl text-foreground mt-3">{uni.name}</h1>
         <p className="text-muted-foreground flex items-center justify-center gap-1 mt-1">
           <MapPin className="h-4 w-4" /> {uni.city}, {uni.country}
@@ -142,7 +143,7 @@ const UniversityPage = () => {
                     <span className="px-2 py-0.5 rounded bg-secondary text-secondary-foreground">{p.duration}</span>
                     <span className="px-2 py-0.5 rounded bg-secondary text-secondary-foreground">{p.term}</span>
                   </div>
-                  <p className="mt-2 font-bold text-foreground">{p.cost}</p>
+                  <p className="mt-2 text-sm text-muted-foreground">{p.language}</p>
                 </Link>
               )) : (
                 <p className="text-muted-foreground">No programs currently listed.</p>
@@ -158,22 +159,6 @@ const UniversityPage = () => {
                 Located in the heart of {uni.city}, the campus offers a unique blend of historic architecture and modern facilities.
                 Students enjoy access to world-class libraries, research labs, and cultural venues.
               </p>
-            </div>
-          )}
-          {activeTab === 3 && (
-            <div className="space-y-4">
-              <div className="bg-card rounded-lg p-4 border border-border">
-                <h4 className="font-semibold text-foreground">Tuition & Fees</h4>
-                <p className="text-muted-foreground text-sm mt-1">Varies by program. Contact us for detailed pricing.</p>
-              </div>
-              <div className="bg-card rounded-lg p-4 border border-border">
-                <h4 className="font-semibold text-foreground">Accommodation</h4>
-                <p className="text-muted-foreground text-sm mt-1">€600 - €1,200/month depending on location and type.</p>
-              </div>
-              <div className="bg-card rounded-lg p-4 border border-border">
-                <h4 className="font-semibold text-foreground">Living Expenses</h4>
-                <p className="text-muted-foreground text-sm mt-1">Estimated €400 - €800/month for food, transport, and personal expenses.</p>
-              </div>
             </div>
           )}
         </motion.div>

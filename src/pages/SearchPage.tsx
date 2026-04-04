@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Search, X, ChevronLeft, MapPin, Star } from "lucide-react";
+import { getFlagUrl, getFlagUrlFromName } from "@/lib/utils";
 import { allCountries } from "@/data/countries";
 import { universities } from "@/data/universities";
 import { programs } from "@/data/universities";
@@ -88,7 +89,7 @@ const SearchPage = () => {
                     to={`/country/${c.id}`}
                     className="flex items-center gap-3 py-3 px-2 hover:bg-secondary rounded-lg transition-colors touch-target"
                   >
-                    <span className="text-xl">{c.flag}</span>
+                    <img src={getFlagUrl(c.id, 40)} alt={c.name} className="w-8 h-6 rounded object-cover" />
                     <div className="flex-1">
                       <p className="font-medium text-foreground">{c.name}</p>
                       <p className="text-xs text-muted-foreground">{c.programCount} programs</p>
@@ -110,7 +111,7 @@ const SearchPage = () => {
                     to={`/university/${u.id}`}
                     className="flex items-center gap-3 py-3 px-2 hover:bg-secondary rounded-lg transition-colors touch-target"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center text-lg">{u.countryFlag}</div>
+                    <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center overflow-hidden"><img src={getFlagUrlFromName(u.country, 80)} alt={u.country} className="w-full h-full object-cover" /></div>
                     <div className="flex-1">
                       <p className="font-medium text-foreground">{u.name}</p>
                       <p className="text-xs text-muted-foreground flex items-center gap-1">
@@ -138,9 +139,9 @@ const SearchPage = () => {
                   >
                     <h4 className="font-semibold text-foreground">{p.name}</h4>
                     <p className="text-sm text-muted-foreground">{p.university}</p>
-                    <div className="mt-1 flex items-center gap-2 text-sm">
-                      <span className="font-medium text-foreground">{p.cost}</span>
-                      <span className="text-muted-foreground">• {p.term}</span>
+                     <div className="mt-1 flex items-center gap-2 text-sm">
+                       <span className="text-muted-foreground">{p.duration}</span>
+                       <span className="text-muted-foreground">• {p.term}</span>
                     </div>
                   </Link>
                 ))}

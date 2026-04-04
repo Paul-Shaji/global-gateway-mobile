@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ChevronLeft, Share2, MapPin, Star, GraduationCap, Building2, DollarSign, FileText } from "lucide-react";
+import { ChevronLeft, Share2, MapPin, Star, GraduationCap, Building2, FileText } from "lucide-react";
+import { getFlagUrl, getFlagUrlFromName } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { allCountries } from "@/data/countries";
 import { universities, programs } from "@/data/universities";
@@ -60,7 +61,7 @@ const CountryPage = () => {
         <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}>
           <div className="bg-card rounded-xl p-5 shadow-card">
             <div className="flex items-center gap-3">
-              <span className="text-4xl">{country.flag}</span>
+              <img src={getFlagUrl(country.id, 80)} alt={country.name} className="w-12 h-9 rounded object-cover" />
               <div>
                 <h1 className="font-display text-2xl md:text-3xl text-foreground">{country.name}</h1>
                 <p className="text-muted-foreground italic">"{country.tagline}"</p>
@@ -77,7 +78,6 @@ const CountryPage = () => {
           {[
             { icon: GraduationCap, label: "Programs", value: country.programCount },
             { icon: Building2, label: "Universities", value: country.universityCount },
-            { icon: DollarSign, label: "Avg Cost", value: "€8K/sem" },
             { icon: FileText, label: "Visa", value: "Required" },
           ].map(stat => (
             <div key={stat.label} className="snap-start shrink-0 bg-card rounded-xl p-4 shadow-soft border border-border min-w-[120px] text-center">
@@ -106,12 +106,12 @@ const CountryPage = () => {
                 to={`/program/${p.id}`}
                 className="block bg-secondary/50 rounded-lg p-4 hover:bg-secondary transition-colors"
               >
-                <h4 className="font-semibold text-foreground">{p.name}</h4>
+                 <h4 className="font-semibold text-foreground">{p.name}</h4>
                 <p className="text-sm text-muted-foreground">{p.university}</p>
                 <div className="mt-2 flex items-center gap-3 text-sm">
-                  <span className="font-medium text-foreground">{p.cost}</span>
-                  <span className="text-muted-foreground">•</span>
-                  <span className="text-muted-foreground">{p.term}</span>
+                   <span className="text-muted-foreground">{p.duration}</span>
+                   <span className="text-muted-foreground">•</span>
+                   <span className="text-muted-foreground">{p.term}</span>
                 </div>
               </Link>
             )) : (
@@ -129,9 +129,9 @@ const CountryPage = () => {
                 to={`/university/${u.id}`}
                 className="shrink-0 w-[200px] bg-secondary/50 rounded-lg p-4 hover:bg-secondary transition-colors"
               >
-                <div className="w-10 h-10 rounded-lg bg-card flex items-center justify-center text-xl mb-2">
-                  {u.countryFlag}
-                </div>
+                <div className="w-10 h-10 rounded-lg bg-card flex items-center justify-center overflow-hidden mb-2">
+                   <img src={getFlagUrlFromName(u.country, 80)} alt={u.country} className="w-full h-full object-cover" />
+                 </div>
                 <h4 className="font-semibold text-foreground text-sm">{u.name}</h4>
                 <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
                   <Star className="h-3 w-3 text-gold fill-gold" /> {u.rating} • {u.programCount} programs

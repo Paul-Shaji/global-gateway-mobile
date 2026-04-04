@@ -1,9 +1,11 @@
+import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Search, MapPin, ArrowRight, Star, GraduationCap, Globe, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { popularCountries } from "@/data/countries";
 import { featuredUniversities, programs } from "@/data/universities";
+import { getFlagUrl, getFlagUrlFromName } from "@/lib/utils";
 import heroImage from "@/assets/hero-study-abroad.jpg";
 
 const Index = () => {
@@ -82,28 +84,7 @@ const Index = () => {
               View all <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 snap-x snap-mandatory scrollbar-hide">
-            {popularCountries.map((country, i) => (
-              <motion.div
-                key={country.id}
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.1 * i }}
-                className="snap-start"
-              >
-                <Link
-                  to={`/country/${country.id}`}
-                  className="flex flex-col items-center w-[100px] md:w-[120px] shrink-0 group"
-                >
-                  <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-secondary flex items-center justify-center text-3xl md:text-4xl group-hover:shadow-card transition-shadow">
-                    {country.flag}
-                  </div>
-                  <p className="mt-2 text-sm font-medium text-foreground text-center">{country.name}</p>
-                  <p className="text-xs text-muted-foreground">{country.programCount} programs</p>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
+          <DestinationSlideshow countries={popularCountries} />
         </div>
       </section>
 
@@ -124,11 +105,11 @@ const Index = () => {
                   className="block bg-card rounded-xl p-5 shadow-soft hover:shadow-card transition-shadow"
                 >
                   <div className="flex items-start gap-3">
-                    <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center text-2xl shrink-0">
-                      {uni.countryFlag}
+                    <div className="w-12 h-12 rounded-lg bg-secondary flex items-center justify-center shrink-0 overflow-hidden">
+                       <img src={getFlagUrlFromName(uni.country, 80)} alt={uni.country} className="w-full h-full object-cover" />
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-display text-lg text-foreground">{uni.name}</h3>
+                     <div className="flex-1 min-w-0">
+                       <h3 className="font-display text-lg text-foreground">{uni.name}</h3>
                       <p className="text-sm text-muted-foreground flex items-center gap-1">
                         <MapPin className="h-3 w-3" /> {uni.city}, {uni.country}
                       </p>
@@ -169,10 +150,9 @@ const Index = () => {
                       <span className="text-xs px-2 py-1 rounded-md bg-secondary text-secondary-foreground">{program.language}</span>
                     </div>
                   </div>
-                  <div className="text-right shrink-0">
-                    <p className="font-bold text-foreground">{program.cost}</p>
-                    <p className="text-xs text-muted-foreground">{program.category}</p>
-                  </div>
+                   <div className="text-right shrink-0">
+                     <p className="text-xs text-muted-foreground">{program.category}</p>
+                   </div>
                 </div>
               </Link>
             ))}
@@ -237,5 +217,55 @@ const Index = () => {
     </div>
   );
 };
+
+function DestinationSlideshow({ countries }: { countries: typeof popularCountries }) {
+  const [offset, setOffset] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const itemWidth = 116; // w-[100px] + gap
+  const maxOffset = Math.max(0, countries.length * itemWidth - 400);
+
+  useEffect(() => {
+    if (paused) return;
+    const interval = setInterval(() => {
+      setOffset(prev => (prev >= maxOffset ? 0 : prev + itemWidth));
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [paused, maxOffset]);
+
+  return (
+    <div
+      className="overflow-hidden -mx-4 px-4"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onTouchStart={() => setPaused(true)}
+      onTouchEnd={() => setPaused(false)}
+    >
+      <div
+        className="flex gap-3 transition-transform duration-700 ease-in-out"
+        style={{ transform: `translateX(-${offset}px)` }}
+      >
+        {countries.map((country, i) => (
+          <motion.div
+            key={country.id}
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.1 * i }}
+          >
+            <Link
+              to={`/country/${country.id}`}
+              className="flex flex-col items-center w-[100px] md:w-[120px] shrink-0 group"
+            >
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-secondary flex items-center justify-center overflow-hidden group-hover:shadow-card transition-shadow">
+                <img src={getFlagUrl(country.id, 160)} alt={country.name} className="w-full h-full object-cover" />
+              </div>
+              <p className="mt-2 text-sm font-medium text-foreground text-center">{country.name}</p>
+              <p className="text-xs text-muted-foreground">{country.programCount} programs</p>
+            </Link>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default Index;

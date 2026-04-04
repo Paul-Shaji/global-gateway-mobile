@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, Star, Quote, MapPin, Calendar, Filter, X } from "lucide-react";
+import { getFlagUrl } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 import studentSarah from "@/assets/student-sarah.jpg";
@@ -201,8 +202,8 @@ const StudentStoriesPage = () => {
                   : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
               }`}
             >
-              <span>{filter.flag}</span>
-              <span>{filter.name}</span>
+               <img src={filter.id === "all" ? "https://flagcdn.com/w20/un.png" : getFlagUrl(filter.id, 20)} alt={filter.name} className="w-5 h-3.5 rounded-sm object-cover" />
+               <span>{filter.name}</span>
             </button>
           ))}
         </div>
@@ -279,8 +280,8 @@ function StoryCard({ story, expanded, onToggle }: { story: Story; expanded: bool
             <MapPin className="h-3 w-3" /> {story.university}
           </p>
           <div className="mt-1 flex items-center gap-2">
-            <span className="text-sm">{story.countryFlag}</span>
-            <span className="text-xs text-muted-foreground">{story.country}</span>
+            <img src={getFlagUrl(story.countryId, 20)} alt={story.country} className="w-5 h-3.5 rounded-sm object-cover" />
+             <span className="text-xs text-muted-foreground">{story.country}</span>
             <span className="text-xs text-muted-foreground">•</span>
             <span className="text-xs text-muted-foreground flex items-center gap-0.5">
               <Calendar className="h-3 w-3" /> {story.term}

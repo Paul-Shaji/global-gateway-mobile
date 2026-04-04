@@ -22,7 +22,6 @@ export interface Program {
   country: string;
   countryId: string;
   duration: string;
-  cost: string;
   term: string;
   language: string;
   category: string;
@@ -68,14 +67,14 @@ export const universities: University[] = [
 ];
 
 export const programs: Program[] = [
-  { id: "p1", name: "Semester in Paris", university: "Sorbonne University", universityId: "sorbonne", country: "France", countryId: "france", duration: "Semester", cost: "€8,500", term: "Spring 2026", language: "French/English", category: "Liberal Arts" },
-  { id: "p2", name: "Art & Culture in Paris", university: "Sorbonne University", universityId: "sorbonne", country: "France", countryId: "france", duration: "Summer", cost: "€4,200", term: "Summer 2026", language: "English", category: "Arts" },
-  { id: "p3", name: "Business in Europe", university: "Sorbonne University", universityId: "sorbonne", country: "France", countryId: "france", duration: "Semester", cost: "€9,100", term: "Fall 2026", language: "English", category: "Business" },
-  { id: "p4", name: "French Language Immersion", university: "Sorbonne University", universityId: "sorbonne", country: "France", countryId: "france", duration: "8 Weeks", cost: "€3,800", term: "Summer 2026", language: "French", category: "Language" },
-  { id: "p5", name: "Oxford Summer Programme", university: "University of Oxford", universityId: "oxford", country: "United Kingdom", countryId: "uk", duration: "Summer", cost: "£6,500", term: "Summer 2026", language: "English", category: "Liberal Arts" },
-  { id: "p6", name: "Semester at Oxford", university: "University of Oxford", universityId: "oxford", country: "United Kingdom", countryId: "uk", duration: "Semester", cost: "£14,000", term: "Fall 2026", language: "English", category: "Liberal Arts" },
-  { id: "p7", name: "Tokyo Tech Exchange", university: "University of Tokyo", universityId: "tokyo", country: "Japan", countryId: "japan", duration: "Semester", cost: "¥850,000", term: "Spring 2026", language: "Japanese/English", category: "STEM" },
-  { id: "p8", name: "Spanish Language & Culture", university: "University of Barcelona", universityId: "barcelona", country: "Spain", countryId: "spain", duration: "Semester", cost: "€6,200", term: "Fall 2026", language: "Spanish/English", category: "Language" },
+  { id: "p1", name: "Semester in Paris", university: "Sorbonne University", universityId: "sorbonne", country: "France", countryId: "france", duration: "Semester", term: "Spring 2026", language: "French/English", category: "Liberal Arts" },
+  { id: "p2", name: "Art & Culture in Paris", university: "Sorbonne University", universityId: "sorbonne", country: "France", countryId: "france", duration: "Summer", term: "Summer 2026", language: "English", category: "Arts" },
+  { id: "p3", name: "Business in Europe", university: "Sorbonne University", universityId: "sorbonne", country: "France", countryId: "france", duration: "Semester", term: "Fall 2026", language: "English", category: "Business" },
+  { id: "p4", name: "French Language Immersion", university: "Sorbonne University", universityId: "sorbonne", country: "France", countryId: "france", duration: "8 Weeks", term: "Summer 2026", language: "French", category: "Language" },
+  { id: "p5", name: "Oxford Summer Programme", university: "University of Oxford", universityId: "oxford", country: "United Kingdom", countryId: "uk", duration: "Summer", term: "Summer 2026", language: "English", category: "Liberal Arts" },
+  { id: "p6", name: "Semester at Oxford", university: "University of Oxford", universityId: "oxford", country: "United Kingdom", countryId: "uk", duration: "Semester", term: "Fall 2026", language: "English", category: "Liberal Arts" },
+  { id: "p7", name: "Tokyo Tech Exchange", university: "University of Tokyo", universityId: "tokyo", country: "Japan", countryId: "japan", duration: "Semester", term: "Spring 2026", language: "Japanese/English", category: "STEM" },
+  { id: "p8", name: "Spanish Language & Culture", university: "University of Barcelona", universityId: "barcelona", country: "Spain", countryId: "spain", duration: "Semester", term: "Fall 2026", language: "Spanish/English", category: "Language" },
 ];
 
 export const featuredUniversities = universities.filter(u => u.featured);
