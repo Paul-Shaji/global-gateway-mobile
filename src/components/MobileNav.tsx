@@ -117,6 +117,7 @@ export function MobileNav() {
                     <NavItem label="Countries" chevron onClick={() => setPanel("countries")} />
                     <NavItem label="Universities" chevron onClick={() => setPanel("universities")} />
                     <NavItem label="Student Stories" onClick={() => handleNavClick("/stories")} />
+                    <NavItem label="Contact an Advisor" onClick={() => handleNavClick("/contact")} />
                     <NavItem label="Resources" onClick={() => handleNavClick("/resources")} />
                     <div className="px-4 pt-6">
                       <Button
