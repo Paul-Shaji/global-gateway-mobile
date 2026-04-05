@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X, Search, ChevronRight, ChevronLeft, GraduationCap } from "lucide-react";
+import { AlignLeft, X, Search, ChevronRight, ChevronLeft, GraduationCap } from "lucide-react";
 import { allCountries, regions, type Country } from "@/data/countries";
 import { universities, type University } from "@/data/universities";
 import { Button } from "@/components/ui/button";
@@ -94,17 +94,17 @@ export function MobileNav() {
         <div className="flex md:hidden items-center gap-1">
           <button
             onClick={() => handleNavClick("/search")}
-            className="touch-target flex items-center justify-center rounded-lg hover:bg-secondary transition-colors"
+            className="touch-target flex items-center justify-center rounded-lg hover:bg-secondary transition-colors text-primary-foreground"
             aria-label="Search"
           >
-            <Search className="h-5 w-5 text-foreground" />
+            <Search className="h-5 w-5 text-primary-foreground" />
           </button>
           <button
             onClick={() => setOpen(true)}
-            className="touch-target flex items-center justify-center rounded-lg hover:bg-secondary transition-colors"
+            className="touch-target flex items-center justify-center rounded-lg hover:bg-secondary transition-colors text-primary-foreground"
             aria-label="Open menu"
           >
-            <Menu className="h-6 w-6 text-foreground" />
+            <AlignLeft className="h-6 w-6 text-primary-foreground" />
           </button>
         </div>
       </header>
