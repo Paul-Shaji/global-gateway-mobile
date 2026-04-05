@@ -62,7 +62,7 @@ export function MobileNav() {
   return (
     <>
       {/* Top Bar */}
-      <header className="fixed top-0 left-0 right-0 z-50 h-14 flex items-center justify-between px-4 backdrop-blur-md border-b border-primary-foreground bg-black text-white">
+      <header className="fixed top-0 left-0 right-0 z-50 h-14 flex items-center justify-between px-4 backdrop-blur-md border-b bg-black text-white border-black">
         <Link to="/" className="flex items-center gap-2">
           <GraduationCap className="h-7 w-7 text-accent" />
           <span className="font-display text-lg text-secondary">StudyAbroad</span>
