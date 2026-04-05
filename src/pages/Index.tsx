@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Search, MapPin, ArrowRight, Star, GraduationCap, Globe, Users, Quote, Mail } from "lucide-react";
+import { Search, MapPin, ArrowRight, Star, GraduationCap, Globe, Users, Quote, Mail, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { allCountries } from "@/data/countries";
 import { featuredUniversities, programs } from "@/data/universities";
@@ -45,7 +45,7 @@ const Index = () => {
             
           </motion.p>
 
-          {/* Search bar */}
+          {/* Search bar (desktop) / Contact Us (mobile) */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -54,10 +54,17 @@ const Index = () => {
           >
             <Link
               to="/search"
-              className="flex items-center gap-3 w-full max-w-md h-14 px-5 rounded-xl bg-card/95 backdrop-blur-md shadow-elevated text-muted-foreground hover:bg-card transition-colors"
+              className="hidden md:flex items-center gap-3 w-full max-w-md h-14 px-5 rounded-xl bg-card/95 backdrop-blur-md shadow-elevated text-muted-foreground hover:bg-card transition-colors"
             >
               <Search className="h-5 w-5 shrink-0" />
               <span className="text-base">Search countries, universities...</span>
+            </Link>
+            <Link
+              to="/contact"
+              className="flex md:hidden items-center justify-center gap-2 w-full max-w-md h-14 px-5 rounded-xl bg-accent text-accent-foreground font-semibold text-base hover:bg-accent/90 transition-colors shadow-elevated"
+            >
+              <Mail className="h-5 w-5 shrink-0" />
+              Contact Us
             </Link>
           </motion.div>
 
@@ -301,6 +308,17 @@ const Index = () => {
           © 2026 StudyAbroad. All rights reserved.
         </div>
       </footer>
+
+      {/* WhatsApp Floating Button */}
+      <a
+        href="https://wa.me/1234567890"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
+        aria-label="Chat on WhatsApp"
+      >
+        <MessageCircle className="h-7 w-7" />
+      </a>
     </div>
   );
 };
