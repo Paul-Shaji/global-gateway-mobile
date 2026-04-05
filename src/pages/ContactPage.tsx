@@ -72,9 +72,8 @@ const ContactPage = () => {
             <div className="w-16 h-16 rounded-2xl bg-accent/10 flex items-center justify-center mx-auto mb-4">
               <GraduationCap className="h-8 w-8 text-accent" />
             </div>
-            <h2 className="font-display text-2xl md:text-3xl text-foreground">Get Expert Guidance</h2>
+            <h2 className="font-display text-2xl md:text-3xl text-foreground"></h2>
             <p className="mt-2 text-muted-foreground max-w-md mx-auto">
-              Our advisors have helped thousands of students find their perfect study abroad program. We'll respond within 24 hours.
             </p>
           </div>
 
