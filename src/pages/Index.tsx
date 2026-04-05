@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Search, MapPin, ArrowRight, Star, GraduationCap, Globe, Users, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { popularCountries } from "@/data/countries";
+import { allCountries } from "@/data/countries";
 import { featuredUniversities, programs } from "@/data/universities";
 import { getFlagUrl, getFlagUrlFromName } from "@/lib/utils";
 import heroImage from "@/assets/hero-study-abroad.jpg";
@@ -93,7 +93,7 @@ const Index = () => {
               View all <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <DestinationSlideshow countries={popularCountries} />
+          <DestinationSlideshow countries={allCountries} />
         </div>
       </section>
 
@@ -274,7 +274,7 @@ const Index = () => {
   );
 };
 
-function DestinationSlideshow({ countries }: { countries: typeof popularCountries }) {
+function DestinationSlideshow({ countries }: { countries: typeof allCountries }) {
   const [offset, setOffset] = useState(0);
   const [paused, setPaused] = useState(false);
   const itemWidth = 116; // w-[100px] + gap
