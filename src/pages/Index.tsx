@@ -33,9 +33,8 @@ const Index = () => {
             transition={{ delay: 0.1 }}
             className="font-display text-4xl md:text-5xl lg:text-6xl text-primary-foreground leading-tight text-balance"
           >
-            Your journey begins
             <br />
-            <span className="italic">beyond borders</span>
+            <span className="italic">​</span>
           </motion.h1>
           <motion.p
             initial={{ y: 20, opacity: 0 }}
@@ -43,7 +42,7 @@ const Index = () => {
             transition={{ delay: 0.2 }}
             className="mt-4 text-primary-foreground/80 text-lg md:text-xl max-w-md"
           >
-            Discover programs at world-class universities across 30+ countries
+            
           </motion.p>
 
           {/* Search bar */}
@@ -264,7 +263,7 @@ const Index = () => {
             <Button className="h-12 px-8 bg-accent text-accent-foreground hover:bg-accent/90" asChild>
               <Link to="/contact">Get Started</Link>
             </Button>
-            <Button variant="outline" className="h-12 px-8 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10" asChild>
+            <Button variant="outline" className="h-12 px-8 border-primary-foreground/30 hover:bg-primary-foreground/10 text-background bg-background border" asChild>
               <Link to="/search">Browse Programs</Link>
             </Button>
           </div>
