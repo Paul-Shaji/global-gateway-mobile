@@ -67,7 +67,31 @@ export function MobileNav() {
           <GraduationCap className="h-7 w-7 text-accent" />
           <span className="font-display text-lg text-foreground">StudyAbroad</span>
         </Link>
-        <div className="flex items-center gap-1">
+
+        {/* Desktop nav links */}
+        <nav className="hidden md:flex items-center gap-1">
+          {[
+            { label: "Programs", path: "/programs" },
+            { label: "Countries", path: "/search" },
+            { label: "Universities", path: "/search" },
+            { label: "Stories", path: "/stories" },
+            { label: "Contact", path: "/contact" },
+          ].map(item => (
+            <Link
+              key={item.label}
+              to={item.path}
+              className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-secondary"
+            >
+              {item.label}
+            </Link>
+          ))}
+          <Button className="ml-2 h-9 bg-accent text-accent-foreground hover:bg-accent/90" asChild>
+            <Link to="/contact">Apply Now</Link>
+          </Button>
+        </nav>
+
+        {/* Mobile controls */}
+        <div className="flex md:hidden items-center gap-1">
           <button
             onClick={() => handleNavClick("/search")}
             className="touch-target flex items-center justify-center rounded-lg hover:bg-secondary transition-colors"
