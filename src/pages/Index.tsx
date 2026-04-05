@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { allCountries } from "@/data/countries";
 import { featuredUniversities, programs } from "@/data/universities";
 import { getFlagUrl, getFlagUrlFromName } from "@/lib/utils";
-import heroImage from "@/assets/hero-study-abroad.jpg";
+import heroImage from "@/assets/WEBSITE_COVER_PAGE_ENGLISH.jpg.jpeg";
 import studentSarah from "@/assets/student-sarah.jpg";
 import studentJames from "@/assets/student-james.jpg";
 import studentPriya from "@/assets/student-priya.jpg";
@@ -24,28 +24,10 @@ const Index = () => {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <img src={heroImage} alt="European university campus" className="w-full h-full object-cover" width={1920} height={1080} />
-          <div className="absolute inset-0 bg-gradient-to-b from-foreground/60 via-foreground/40 to-foreground/70" />
+          <div className="absolute inset-0  from-foreground/60 via-foreground/40 to-foreground/70" />
         </div>
-        <div className="relative px-4 pt-12 pb-16 md:pt-20 md:pb-24 lg:pt-32 lg:pb-36 max-w-4xl mx-auto">
-          <motion.h1
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.1 }}
-            className="font-display text-4xl md:text-5xl lg:text-6xl text-primary-foreground leading-tight text-balance"
-          >
-            <br />
-            <span className="italic">​</span>
-          </motion.h1>
-          <motion.p
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="mt-4 text-primary-foreground/80 text-lg md:text-xl max-w-md"
-          >
-            
-          </motion.p>
-
-          {/* Search bar (desktop) / Contact Us (mobile) */}
+        <div className="relative px-4 pt-12 pb-16 md:pt-20 md:pb-24 lg:pt-32 lg:pb-36 max-w-4xl mx-auto">        
+         {/* Search bar (desktop) / Contact Us (mobile) */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -311,7 +293,7 @@ const Index = () => {
 
       {/* WhatsApp Floating Button */}
       <a
-        href="https://wa.me/1234567890"
+        href="https://wa.me/9778558140"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform"

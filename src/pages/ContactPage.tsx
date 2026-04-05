@@ -57,12 +57,7 @@ const ContactPage = () => {
     <div className="min-h-screen bg-background pt-14">
       {/* Header */}
       <div className="sticky top-14 z-30 bg-background/95 backdrop-blur-md border-b border-border">
-        <div className="max-w-4xl mx-auto flex items-center gap-3 px-4 h-12">
-          <Link to="/" className="touch-target flex items-center justify-center -ml-2">
-            <ArrowLeft className="h-5 w-5 text-foreground" />
-          </Link>
-          <h1 className="font-display text-lg text-foreground">Talk to an Advisor</h1>
-        </div>
+        
       </div>
 
       <div className="max-w-2xl mx-auto px-4 py-8">

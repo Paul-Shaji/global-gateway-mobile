@@ -6,6 +6,7 @@ import { allCountries, regions, type Country } from "@/data/countries";
 import { universities, type University } from "@/data/universities";
 import { Button } from "@/components/ui/button";
 import { getFlagUrl, getFlagUrlFromName } from "@/lib/utils";
+import logo from "@/assets/logo_ecoverseas.png"
 
 type NavPanel = "main" | "countries" | "universities";
 
@@ -63,10 +64,13 @@ export function MobileNav() {
     <>
       {/* Top Bar */}
       <header className="fixed top-0 left-0 right-0 z-50 h-14 flex items-center justify-between px-4 backdrop-blur-md border-b bg-black text-white border-black">
-        <Link to="/" className="flex items-center gap-2">
-          <GraduationCap className="h-7 w-7 text-accent" />
-          <span className="font-display text-lg text-secondary">StudyAbroad</span>
-        </Link>
+      <Link to="/" className="flex items-center gap-2">
+  <img 
+    src={logo}
+    alt="EC Overseas" 
+    className="h-10 w-auto object-contain"
+  />
+</Link>
 
         {/* Desktop nav links */}
         <nav className="hidden md:flex items-center gap-1">
