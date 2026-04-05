@@ -62,10 +62,10 @@ export function MobileNav() {
   return (
     <>
       {/* Top Bar */}
-      <header className="fixed top-0 left-0 right-0 z-50 h-14 flex items-center justify-between px-4 bg-card/95 backdrop-blur-md border-b border-border">
+      <header className="fixed top-0 left-0 right-0 z-50 h-14 flex items-center justify-between px-4 backdrop-blur-md border-b border-primary-foreground bg-black text-white">
         <Link to="/" className="flex items-center gap-2">
           <GraduationCap className="h-7 w-7 text-accent" />
-          <span className="font-display text-lg text-foreground">StudyAbroad</span>
+          <span className="font-display text-lg text-secondary">StudyAbroad</span>
         </Link>
 
         {/* Desktop nav links */}
@@ -80,7 +80,7 @@ export function MobileNav() {
             <Link
               key={item.label}
               to={item.path}
-              className="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-secondary"
+              className="px-3 py-2 text-sm font-medium transition-colors rounded-lg hover:bg-secondary text-center text-primary-foreground"
             >
               {item.label}
             </Link>
