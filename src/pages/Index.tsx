@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Search, MapPin, ArrowRight, Star, GraduationCap, Globe, Users, Quote } from "lucide-react";
+import { Search, MapPin, ArrowRight, Star, GraduationCap, Globe, Users, Quote, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { allCountries } from "@/data/countries";
 import { featuredUniversities, programs } from "@/data/universities";
@@ -221,6 +221,38 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Contact Section */}
+      <section className="section-padding bg-secondary/50">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-6">
+            <h2 className="font-display text-2xl md:text-3xl text-foreground">Have Questions?</h2>
+            <p className="mt-2 text-muted-foreground">Reach out to our expert advisors — we're here to help you every step of the way.</p>
+          </div>
+          <div className="bg-card rounded-xl p-6 md:p-8 shadow-soft border border-border">
+            <div className="grid md:grid-cols-3 gap-6 text-center">
+              {[
+                { icon: Mail, title: "Email Us", desc: "Get a response within 24 hours" },
+                { icon: Users, title: "1-on-1 Advising", desc: "Schedule a personal session" },
+                { icon: Globe, title: "30+ Countries", desc: "Expert knowledge worldwide" },
+              ].map(item => (
+                <div key={item.title} className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
+                    <item.icon className="h-6 w-6 text-accent" />
+                  </div>
+                  <h3 className="font-semibold text-foreground">{item.title}</h3>
+                  <p className="text-sm text-muted-foreground">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 text-center">
+              <Button className="h-12 px-8 bg-accent text-accent-foreground hover:bg-accent/90" asChild>
+                <Link to="/contact">Talk to an Advisor <ArrowRight className="h-4 w-4 ml-2" /></Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="section-padding bg-primary text-primary-foreground">
         <div className="max-w-4xl mx-auto text-center">
@@ -230,10 +262,10 @@ const Index = () => {
           </p>
           <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
             <Button className="h-12 px-8 bg-accent text-accent-foreground hover:bg-accent/90" asChild>
-              <Link to="/apply">Apply Now</Link>
+              <Link to="/contact">Get Started</Link>
             </Button>
             <Button variant="outline" className="h-12 px-8 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10" asChild>
-              <Link to="/contact">Talk to an Advisor</Link>
+              <Link to="/search">Browse Programs</Link>
             </Button>
           </div>
         </div>
