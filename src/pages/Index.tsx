@@ -225,7 +225,7 @@ const Index = () => {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-6">
             <h2 className="font-display text-2xl md:text-3xl text-foreground">Have Questions?</h2>
-            <p className="mt-2 text-muted-foreground">Reach out to our expert advisors — we're here to help you every step of the way.</p>
+            <p className="mt-2 text-muted-foreground">{" "}</p>
           </div>
           <div className="bg-card rounded-xl p-6 md:p-8 shadow-soft border border-border">
             <div className="grid md:grid-cols-3 gap-6 text-center">
@@ -253,7 +253,7 @@ const Index = () => {
       </section>
 
       {/* CTA */}
-      <section className="section-padding bg-primary text-primary-foreground">
+      <section className="section-padding text-primary-foreground bg-[sidebar-accent-foreground] bg-stone-950">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="font-display text-3xl md:text-4xl">Ready to explore the world?</h2>
           <p className="mt-3 text-primary-foreground/70 max-w-md mx-auto">
@@ -263,7 +263,7 @@ const Index = () => {
             <Button className="h-12 px-8 bg-accent text-accent-foreground hover:bg-accent/90" asChild>
               <Link to="/contact">Get Started</Link>
             </Button>
-            <Button variant="outline" className="h-12 px-8 border-primary-foreground/30 hover:bg-primary-foreground/10 text-background bg-background border" asChild>
+            <Button variant="outline" className="h-12 px-8 border-primary-foreground/30 hover:bg-primary-foreground/10 bg-background border text-secondary-foreground" asChild>
               <Link to="/search">Browse Programs</Link>
             </Button>
           </div>
@@ -278,7 +278,7 @@ const Index = () => {
               <GraduationCap className="h-6 w-6 text-accent" />
               <span className="font-display text-lg text-foreground">StudyAbroad</span>
             </div>
-            <p className="text-sm text-muted-foreground">Connecting students with life-changing study abroad experiences worldwide.</p>
+            <p className="text-sm text-muted-foreground">{" "}</p>
           </div>
           {[
             { title: "Explore", links: ["Programs", "Countries", "Universities", "Scholarships"] },
