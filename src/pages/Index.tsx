@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import type { ElementType } from "react";
 import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import { Search, MapPin, ArrowRight, Star, GraduationCap, Globe, Users, Quote, Mail, MessageCircle, Phone } from "lucide-react";
@@ -7,11 +8,12 @@ import { allCountries } from "@/data/countries";
 import { featuredUniversities, programs } from "@/data/universities";
 import { getFlagUrl, getFlagUrlFromName } from "@/lib/utils";
 import heroImage from "@/assets/WEBSITE_COVER_PAGE_ENGLISH.jpg.jpeg";
+import examImage from "@/assets/WEBSITE WEBSITE 1496x538 01.jpg.jpeg"
+
 import heroImageMobile from "@/assets/mobile_cover_page.jpeg";
 import studentSarah from "@/assets/student-sarah.jpg";
 import studentJames from "@/assets/student-james.jpg";
 import studentPriya from "@/assets/student-priya.jpg";
-import examBanner from "@/assets/examBanner.jpeg"
 import { MessageSquare, Lightbulb, Wallet, FileCheck, Home, Award } from "lucide-react";
 
 const studentStories = [
@@ -284,7 +286,7 @@ const Index = () => {
 {/* exams section */}
       <section className="relative overflow-hidden">
           <div className="absolute inset-0">
-            <img src={examBanner} alt="European university campus" className="hidden md:block w-full h-full object-cover" width={1920} height={1080} />
+            <img src={examImage} alt="European university campus" className="hidden md:block w-full h-full object-cover" width={1920} height={1080} />
             <img src={heroImageMobile} alt="European university campus" className="md:hidden w-full h-full object-cover" width={768} height={1080} />
             <div className="absolute inset-0  from-foreground/60 via-foreground/40 to-foreground/70" />
           </div>
@@ -572,7 +574,13 @@ function DestinationSlideshow({ countries }: { countries: typeof allCountries })
 export default Index;
 
 // Service Card Component
-function ServiceCard({ service, index }: { service: any; index: number }) {
+interface ServiceItem {
+  icon: ElementType;
+  title: string;
+  description: string;
+  color: string;
+}
+function ServiceCard({ service, index }: { service: ServiceItem; index: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
