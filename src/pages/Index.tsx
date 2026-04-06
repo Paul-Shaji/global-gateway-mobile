@@ -9,6 +9,8 @@ import { featuredUniversities, programs } from "@/data/universities";
 import { getFlagUrl, getFlagUrlFromName } from "@/lib/utils";
 import heroImage from "@/assets/WEBSITE_COVER_PAGE_ENGLISH.jpg.jpeg";
 import examImage from "@/assets/WEBSITE WEBSITE 1496x538 01.jpg.jpeg"
+import examImage2 from "@/assets/WEBSITE WEBSITE 1496x538 02.jpg.jpeg"
+import examImage3 from "@/assets/WEBSITE WEBSITE 1496x538.jpg.jpeg"
 
 import heroImageMobile from "@/assets/mobile_cover_page.jpeg";
 import studentSarah from "@/assets/student-sarah.jpg";
@@ -93,6 +95,9 @@ const Index = () => {
         </div>
       </section>
 
+       {/* Exams Banner */}
+      <ExamBanner />
+
      {/* Services Roadmap Section */}
 <section className="section-padding bg-gradient-to-b from-primary to-primary/90">
   <div className="max-w-3xl mx-auto">
@@ -104,14 +109,8 @@ const Index = () => {
         transition={{ duration: 0.5 }}
       >
         <span className="inline-block px-3 py-1 rounded-full border border-accent/40 text-accent text-xs font-semibold tracking-widest uppercase mb-4">
-          Our Process
-        </span>
-        <h2 className="font-display text-3xl md:text-4xl text-primary-foreground mb-3">
           Your Journey to Studying Abroad
-        </h2>
-        <p className="text-sm text-primary-foreground/60 max-w-md mx-auto">
-          A clear, guided path from first consultation to life abroad
-        </p>
+        </span>
       </motion.div>
     </div>
 
@@ -283,63 +282,7 @@ const Index = () => {
         </div>
       </section> */}
 
-{/* exams section */}
-      <section className="relative overflow-hidden">
-          <div className="absolute inset-0">
-            <img src={examImage} alt="European university campus" className="hidden md:block w-full h-full object-cover" width={1920} height={1080} />
-            <img src={heroImageMobile} alt="European university campus" className="md:hidden w-full h-full object-cover" width={768} height={1080} />
-            <div className="absolute inset-0  from-foreground/60 via-foreground/40 to-foreground/70" />
-          </div>
-          <div className="relative px-4 pt-12 pb-16 md:pt-20 md:pb-24 lg:pt-32 lg:pb-36 max-w-4xl mx-auto">        
-          
-          {/* Search bar (desktop) / Contact Us (mobile) */}
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="mt-8"
-          >
-            {/* Desktop: Search bar */}
-            <Link
-              to=""
-              className="hidden md:flex items-center gap-3 w-full max-w-md h-14 px-5 "
-            >
-              <Search className="h-5 w-5 text-white/70 shrink-0" />
-              {/* <span className="text-base text-white/70">Search countries, universities...</span> */}
-            </Link>
 
-            {/* Mobile: Contact Us button */}
-            <Link
-              to="/contact"
-              className="flex md:hidden items-center justify-center gap-2 w-full max-w-xs h-12 px-6 "
-            >
-            <Mail className="h-4 w-4  shrink-0" />
-            
-            {/* <span className="text-base text-white/70">Contact Us.</span> */}
-          </Link>
-        </motion.div>
-
-            {/* Quick stats */}
-            <motion.div
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="mt-8 flex gap-6"
-            >
-              {[
-                { icon: Globe, label: "Countries", value: "30+" },
-                { icon: GraduationCap, label: "Programs", value: "200+" },
-                { icon: Users, label: "Students", value: "10K+" },
-              ].map(stat => (
-                <div key={stat.label} className="text-center">
-                  <stat.icon className="h-5 w-5 text-primary-foreground/70 mx-auto mb-1" />
-                  <p className="text-xl font-bold text-primary-foreground font-body"></p>
-                  <p className="text-xs text-primary-foreground/60"></p>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
 
       {/* Student Stories */}
       <section className="section-padding bg-secondary/50">
@@ -451,7 +394,7 @@ const Index = () => {
               <li>
                 <a href="https://maps.app.goo.gl/3K2yygR7kKj79ta77" target="_blank" rel="noopener noreferrer" className="flex items-start gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
                   <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-accent" />
-                  <span>Your Office Address, City, Country</span>
+                  <span>EC Overseas, City, Country</span>
                 </a>
               </li>
               <li>
@@ -563,11 +506,37 @@ function DestinationSlideshow({ countries }: { countries: typeof allCountries })
               />
             </div>
             <p className="mt-2 text-sm font-medium text-foreground text-center">{country.name}</p>
-            <p className="text-xs text-muted-foreground">{country.programCount} programs</p>
           </Link>
         ))}
       </div>
     </div>
+  );
+}
+
+function ExamBanner() {
+  const images = [examImage, examImage2, examImage3];
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => setCurrent(p => (p + 1) % images.length), 3500);
+    return () => clearInterval(t);
+  }, []);
+
+  return (
+    <section className="overflow-hidden">
+      <div className="relative w-full">
+        {images.map((img, i) => (
+          <img
+            key={i}
+            src={img}
+            alt={`Exam banner ${i + 1}`}
+            className={`w-full h-auto block transition-opacity duration-700 ${
+              i === current ? "opacity-100" : "opacity-0 absolute inset-0"
+            }`}
+          />
+        ))}
+      </div>
+    </section>
   );
 }
 
