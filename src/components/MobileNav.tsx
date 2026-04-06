@@ -16,7 +16,14 @@ export function MobileNav() {
   const [countrySearch, setCountrySearch] = useState("");
   const [uniSearch, setUniSearch] = useState("");
   const [expandedRegions, setExpandedRegions] = useState<string[]>(["Popular Destinations"]);
+  const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     if (open) {
@@ -63,7 +70,7 @@ export function MobileNav() {
   return (
     <>
       {/* Top Bar */}
-      <header className="fixed top-0 left-0 right-0 z-50 h-14 flex items-center justify-between px-4 backdrop-blur-md border-b bg-black text-white border-black">
+      <header className="fixed top-0 left-0 right-0 z-50 h-14 flex items-center justify-between px-4 bg-black border-b border-white/10 text-white">
       <Link to="/" className="flex items-center gap-2">
   <img 
     src={logo}

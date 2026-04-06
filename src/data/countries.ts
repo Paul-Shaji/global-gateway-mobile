@@ -29,7 +29,6 @@ export const regions: Region[] = [
       ...popularCountries.filter(c => c.region === "Europe"),
       { id: "austria", name: "Austria", flag: "🇦🇹", region: "Europe", tagline: "Music, mountains, and academic excellence", programCount: 5, universityCount: 3 },
       { id: "belgium", name: "Belgium", flag: "🇧🇪", region: "Europe", tagline: "Heart of Europe", programCount: 4, universityCount: 3 },
-      { id: "czech", name: "Czech Republic", flag: "🇨🇿", region: "Europe", tagline: "Historic charm at affordable prices", programCount: 6, universityCount: 4 },
       { id: "germany", name: "Germany", flag: "🇩🇪", region: "Europe", tagline: "Engineering and innovation hub", programCount: 16, universityCount: 10 },
       { id: "greece", name: "Greece", flag: "🇬🇷", region: "Europe", tagline: "Birthplace of Western civilization", programCount: 5, universityCount: 3 },
       { id: "ireland", name: "Ireland", flag: "🇮🇪", region: "Europe", tagline: "Friendly people, rich literary heritage", programCount: 8, universityCount: 5 },
