@@ -215,9 +215,9 @@ const AboutUs = () => (
     <Background />
 
     {/* ════════════════ EXAM BANNER ════════════════ */}
-    <div style={{ position: "relative", zIndex: 1 }}>
-      <ExamBanner />
-    </div>
+<div style={{ position: "relative", zIndex: 1, marginTop: "4rem" }}>
+  <ExamBanner />
+</div>
 
     {/* ════════════════ HERO ════════════════ */}
    {/* ════════════════ HERO ════════════════ */}
