@@ -11,6 +11,7 @@ import SearchPage from "./pages/SearchPage.tsx";
 import StudentStoriesPage from "./pages/StudentStoriesPage.tsx";
 import ContactPage from "./pages/ContactPage.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import AboutUs from "./pages/AboutUs.tsx"
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/country/:id" element={<CountryPage />} />
           <Route path="/university/:id" element={<UniversityPage />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/about" element={<AboutUs />} />
           <Route path="/stories" element={<StudentStoriesPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFound />} />

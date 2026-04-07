@@ -7,6 +7,7 @@ import { universities, type University } from "@/data/universities";
 import { Button } from "@/components/ui/button";
 import { getFlagUrl, getFlagUrlFromName } from "@/lib/utils";
 import logo from "@/assets/logo_ecoverseas.png"
+import { Label } from "recharts";
 
 type NavPanel = "main" | "countries" | "universities";
 
@@ -82,10 +83,10 @@ export function MobileNav() {
         {/* Desktop nav links */}
         <nav className="hidden md:flex items-center gap-1">
           {[
-            // { label: "Programs", path: "/programs" },
             { label: "Countries", path: "/search" },
             { label: "Universities", path: "/search" },
             { label: "Stories", path: "/stories" },
+            { label: "About Us", path: "/about" },
             { label: "Contact", path: "/contact" },
           ].map(item => (
             <Link
@@ -154,6 +155,7 @@ export function MobileNav() {
 
                     {[
                       { label: "Home", path: "/", icon: "🏠" },
+                      { label: "About Us", path: "/about", icon: "ℹ️" },
                       // { label: "Programs", path: "/programs", icon: "🎓" },
                       { label: "Student Stories", path: "/stories", icon: "💬" },
                       { label: "Contact an Advisor", path: "/contact", icon: "📞" },
