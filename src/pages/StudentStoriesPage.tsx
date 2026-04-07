@@ -154,17 +154,15 @@ const StudentStoriesPage = () => {
       {/* Hero */}
       <div className="bg-gradient-to-br from-primary via-primary/95 to-accent/20 px-4 py-10 text-center">
         <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5 }}>
-          <span className="inline-block px-3 py-1 rounded-full border border-accent/40 text-accent text-xs font-semibold tracking-widest uppercase mb-3">
-            Real Experiences
-          </span>
+         
           <h1 className="font-display text-3xl md:text-4xl text-primary-foreground mb-2">
             Stories from Our Students
           </h1>
           <p className="text-primary-foreground/60 text-sm max-w-sm mx-auto">
-            Hear from students whose lives changed through studying abroad with EC Overseas.
+           
           </p>
           <div className="mt-6 flex justify-center gap-8">
-            {[{ value: "500+", label: "Stories" }, { value: "4.8★", label: "Avg Rating" }, { value: "30+", label: "Countries" }].map(s => (
+            {[{ value: "500+", label: "Stories" }, { value: "4.9★", label: "Avg Rating" }, { value: "30+", label: "Countries" }].map(s => (
               <div key={s.label}>
                 <p className="text-xl font-bold text-primary-foreground">{s.value}</p>
                 <p className="text-xs text-primary-foreground/50">{s.label}</p>
