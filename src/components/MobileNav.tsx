@@ -82,7 +82,7 @@ export function MobileNav() {
         {/* Desktop nav links */}
         <nav className="hidden md:flex items-center gap-1">
           {[
-            { label: "Programs", path: "/programs" },
+            // { label: "Programs", path: "/programs" },
             { label: "Countries", path: "/search" },
             { label: "Universities", path: "/search" },
             { label: "Stories", path: "/stories" },

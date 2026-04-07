@@ -14,14 +14,17 @@ import examImage3 from "@/assets/WEBSITE WEBSITE 1496x538.jpg.jpeg"
 
 import heroImageMobile from "@/assets/mobile_cover_page.jpeg";
 import studentSarah from "@/assets/student-sarah.jpg";
-import studentJames from "@/assets/student-james.jpg";
-import studentPriya from "@/assets/student-priya.jpg";
+import studentabirami from "@/assets/abirami.png";
+import studentSheba from "@/assets/sheba.png";
 import { MessageSquare, Lightbulb, Wallet, FileCheck, Home, Award } from "lucide-react";
 
 const studentStories = [
-  { name: "Sarah Chen", photo: studentSarah, country: "France", headline: "Paris changed the way I see the world", university: "Sorbonne University", rating: 5 },
-  { name: "James Nakamura", photo: studentJames, country: "United Kingdom", headline: "Oxford exceeded every expectation I had", university: "University of Oxford", rating: 5 },
-  { name: "Priya Sharma", photo: studentPriya, country: "Japan", headline: "Japan taught me balance between tradition and innovation", university: "University of Tokyo", rating: 5 },
+  { name: "Gopika Radhakrishnan", photo: "", country: "",
+     headline: "I'm very grateful to E C Overseas for making my Australian study abroad dreams a reality. From the moment I walked in, they were super supportive. They helped me pick the perfect course that fit my interests and budget, made sure my PTE training was on point and handled my student visa application excellently. Their guidance every step of the way was invaluable – honestly, they took a lots of effort for each of the students journey. The team's guidance and support made the entire process stress-free.If you're looking for a reliable agency to help you study in Australia, l highly reccomend E C Overseas.",
+     university: "", rating: 5 },
+  { name: "Abhirami PA", photo: studentabirami, country: "", 
+    headline: "I joined EC OVERSEAS to learn spoken English, which is a very good institute for improving communication skills. The teachers are well-qualified and friendly, and they help students speak English confidently and fluently. In the classes, we practice speaking, listening, reading, and writing. We also learn new vocabulary and correct pronunciation. The environment in EC Overseas is very supportive, and I enjoy learning there every day. This course is helping me overcome my fear of speaking in front of others and improving my confidence. I believe this training will help me in my future studies and career as well.Thankuu for everything.....", university: "", rating: 5 },
+  { name: "Sheba Koshy", photo: studentSheba, country: "", headline: "My dream of studying abroad was made simpler and at ease with the help of EC Overseas. They showcased a great amount of patience during the entire journey and backed me up with the right amount of encouragement whenever I thought I couldn't make it.Recently, I got my student visa for Australia. All thanks to God, my parents and Mr. Ebez and his team who worked to make this possible. If you’re planning to study abroad, please do consult EC Overseas. I highly recommend them to anyone looking for a trustworthy study abroad agency.", university: "", rating: 5 },
 ];
 
 const Index = () => {
@@ -34,41 +37,14 @@ const Index = () => {
           <img src={heroImageMobile} alt="European university campus" className="md:hidden w-full h-full object-cover" width={768} height={1080} />
           <div className="absolute inset-0  from-foreground/60 via-foreground/40 to-foreground/70" />
         </div>
-        <div className="relative px-4 pt-12 pb-16 md:pt-20 md:pb-24 lg:pt-32 lg:pb-36 max-w-4xl mx-auto">        
-         {/* Search bar (desktop) / Contact Us (mobile) */}
-         {/* Search bar (desktop) / Contact Us (mobile) */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="mt-8"
-        >
-          {/* Desktop: Search bar */}
-          <Link
-            to="/search"
-            className="hidden md:flex items-center gap-3 w-full max-w-md h-14 px-5 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 hover:bg-white/20 transition-colors"
-          >
-            <Search className="h-5 w-5 text-white/70 shrink-0" />
-            <span className="text-base text-white/70">Search countries, universities...</span>
-          </Link>
+        <div className="relative flex flex-col justify-between min-h-[420px] md:min-h-[560px] px-4 pt-12 pb-6 max-w-4xl mx-auto">
 
-          {/* Mobile: Contact Us button */}
-          <Link
-            to="/contact"
-            className="flex md:hidden items-center justify-center gap-2 w-full max-w-xs h-12 px-6 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 hover:bg-white/20 transition-colorss"
-          >
-          <Mail className="h-4 w-4 text-white/70 shrink-0" />
-          
-          <span className="text-base text-white/70">Contact Us.</span>
-        </Link>
-      </motion.div>
-
-          {/* Quick stats */}
+          {/* Quick stats — top */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="mt-8 flex gap-6"
+            className="flex gap-6"
           >
             {[
               { icon: Globe, label: "Countries", value: "30+" },
@@ -81,6 +57,32 @@ const Index = () => {
                 <p className="text-xs text-primary-foreground/60">{stat.label}</p>
               </div>
             ))}
+          </motion.div>
+
+          {/* Contact Us — bottom left */}
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="mt-auto"
+          >
+            {/* Desktop */}
+            <Link
+              to="/contact"
+              className="hidden md:inline-flex items-center gap-3 h-14 px-6 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 hover:bg-white/20 transition-colors"
+            >
+              <Mail className="h-5 w-5 text-white/70 shrink-0" />
+              <span className="text-base text-white/70">Contact Us</span>
+            </Link>
+
+            {/* Mobile */}
+            <Link
+              to="/contact"
+              className="inline-flex md:hidden items-center gap-2 h-12 px-5 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 hover:bg-white/20 transition-colors"
+            >
+              <Mail className="h-4 w-4 text-white/70 shrink-0" />
+              <span className="text-sm text-white/70">Contact Us</span>
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -285,48 +287,66 @@ const Index = () => {
 
 
       {/* Student Stories */}
-      <section className="section-padding bg-secondary/50">
+      <section className="section-padding bg-gradient-to-b from-secondary/30 to-background">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="font-display text-2xl md:text-3xl text-foreground">Student Stories</h2>
-            <Link to="/stories" className="text-sm font-medium text-accent flex items-center gap-1">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <span className="text-xs font-bold tracking-widest text-accent uppercase">Testimonials</span>
+              <h2 className="font-display text-2xl md:text-3xl text-foreground mt-1">What Our Students Say</h2>
+            </div>
+            <Link to="/stories" className="text-sm font-semibold text-accent flex items-center gap-1 hover:gap-2 transition-all">
               View all <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-3 md:overflow-visible md:snap-none">
-            {studentStories.map((story, i) => (
-              <motion.div
-                key={story.name}
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.1 * i }}
-              >
-                <Link
-                  to="/stories"
-                  className="block bg-card rounded-xl p-5 shadow-soft hover:shadow-card transition-shadow border border-border w-[80vw] md:w-auto shrink-0 md:shrink snap-start"
+          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-3 -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-3 md:overflow-visible md:snap-none">
+            {studentStories.map((story, i) => {
+              const gradients = ["from-orange-400 to-pink-500", "from-blue-400 to-violet-500", "from-emerald-400 to-teal-500"];
+              const grad = gradients[i % gradients.length];
+              const initials = story.name.split(" ").map((n: string) => n[0]).join("").slice(0, 2).toUpperCase();
+              return (
+                <motion.div
+                  key={story.name}
+                  initial={{ y: 20, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 * i }}
+                  className="w-[80vw] md:w-auto shrink-0 md:shrink snap-start"
                 >
-                  <div className="flex items-center gap-3 mb-3">
-                    <img src={story.photo} alt={story.name} className="w-12 h-12 rounded-full object-cover border-2 border-accent/20" width={48} height={48} />
-                    <div>
-                      <p className="font-semibold text-foreground text-sm">{story.name}</p>
-                      <p className="text-xs text-muted-foreground">{story.university}</p>
+                  <Link to="/stories" className="flex flex-col h-full bg-card rounded-2xl border border-border overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                    {/* Gradient top bar */}
+                    <div className={`h-1.5 w-full bg-gradient-to-r ${grad}`} />
+                    <div className="p-5 flex flex-col flex-1">
+                      {/* Header */}
+                      <div className="flex items-center gap-3 mb-4">
+                        {story.photo ? (
+                          <img src={story.photo} alt={story.name} className="w-11 h-11 rounded-full object-cover ring-2 ring-accent/20 shrink-0" />
+                        ) : (
+                          <div className={`w-11 h-11 rounded-full bg-gradient-to-br ${grad} flex items-center justify-center shrink-0 ring-2 ring-white/10`}>
+                            <span className="text-sm font-bold text-white">{initials}</span>
+                          </div>
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <p className="font-semibold text-foreground text-sm truncate">{story.name}</p>
+                          <p className="text-xs text-muted-foreground truncate">{story.university}</p>
+                        </div>
+                        <div className="flex gap-0.5 shrink-0">
+                          {Array.from({ length: story.rating }).map((_, j) => (
+                            <Star key={j} className="h-3 w-3 text-amber-400 fill-amber-400" />
+                          ))}
+                        </div>
+                      </div>
+                      {/* Quote */}
+                      <div className="relative flex-1">
+                        <Quote className={`h-6 w-6 text-accent/15 absolute -top-1 -left-1`} />
+                        <p className="text-sm text-muted-foreground leading-relaxed pl-4 line-clamp-4">
+                          {story.headline}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="relative">
-                    <Quote className="h-4 w-4 text-accent/30 absolute -top-0.5 -left-0.5" />
-                    <p className="font-display text-base text-foreground italic pl-4 leading-snug">"{story.headline}"</p>
-                  </div>
-                  <div className="mt-3 flex items-center justify-between">
-                    <span className="text-xs text-muted-foreground">{story.country}</span>
-                    <div className="flex gap-0.5">
-                      {Array.from({ length: story.rating }).map((_, j) => (
-                        <Star key={j} className="h-3 w-3 text-gold fill-gold" />
-                      ))}
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
+                  </Link>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -394,7 +414,7 @@ const Index = () => {
               <li>
                 <a href="https://maps.app.goo.gl/3K2yygR7kKj79ta77" target="_blank" rel="noopener noreferrer" className="flex items-start gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
                   <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-accent" />
-                  <span>EC Overseas, City, Country</span>
+                  <span>EC Overseas</span>
                 </a>
               </li>
               <li>
@@ -413,7 +433,7 @@ const Index = () => {
             {/* Social Media */}
             <div className="flex items-center gap-3 pt-1">
               {[
-                { href: "https://instagram.com/YOUR_HANDLE", label: "Instagram", svg: <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.975.975 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608.975-.975 2.242-1.246 3.608-1.308C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.014 7.052.072 5.197.157 3.355.673 2.014 2.014.673 3.355.157 5.197.072 7.052.014 8.332 0 8.741 0 12c0 3.259.014 3.668.072 4.948.085 1.855.601 3.697 1.942 5.038 1.341 1.341 3.183 1.857 5.038 1.942C8.332 23.986 8.741 24 12 24s3.668-.014 4.948-.072c1.855-.085 3.697-.601 5.038-1.942 1.341-1.341 1.857-3.183 1.942-5.038.058-1.28.072-1.689.072-4.948s-.014-3.668-.072-4.948c-.085-1.855-.601-3.697-1.942-5.038C20.645.673 18.803.157 16.948.072 15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg> },
+                { href: "https://instagram.com/ec_overseas/", label: "Instagram", svg: <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.975.975 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.334 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.334-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608.975-.975 2.242-1.246 3.608-1.308C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.014 7.052.072 5.197.157 3.355.673 2.014 2.014.673 3.355.157 5.197.072 7.052.014 8.332 0 8.741 0 12c0 3.259.014 3.668.072 4.948.085 1.855.601 3.697 1.942 5.038 1.341 1.341 3.183 1.857 5.038 1.942C8.332 23.986 8.741 24 12 24s3.668-.014 4.948-.072c1.855-.085 3.697-.601 5.038-1.942 1.341-1.341 1.857-3.183 1.942-5.038.058-1.28.072-1.689.072-4.948s-.014-3.668-.072-4.948c-.085-1.855-.601-3.697-1.942-5.038C20.645.673 18.803.157 16.948.072 15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg> },
                 { href: "https://linkedin.com/company/YOUR_HANDLE", label: "LinkedIn", svg: <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> },
                 { href: "https://youtube.com/@YOUR_HANDLE", label: "YouTube", svg: <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg> },
                 { href: "https://twitter.com/YOUR_HANDLE", label: "Twitter", svg: <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg> },
@@ -461,7 +481,7 @@ const Index = () => {
 
       {/* Instagram Floating Button */}
       <a
-        href="https://instagram.com/YOUR_HANDLE"
+        href="https://instagram.com/ec_overseas/"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-24 right-6 z-50 w-14 h-14 rounded-full bg-gradient-to-br from-[#f09433] via-[#e6683c] via-[#dc2743] via-[#cc2366] to-[#bc1888] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform"

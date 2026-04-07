@@ -162,8 +162,8 @@ const ContactPage = () => {
 
           {[
             { icon: Phone,  label: "Phone",  value: "+91 97785 58140",           href: "tel:+919778558140" },
-            { icon: Mail,   label: "Email",  value: "your@gmail.com",            href: "mailto:your@gmail.com" },
-            { icon: MapPin, label: "Office", value: "Your Office Address, City", href: "https://maps.app.goo.gl/3K2yygR7kKj79ta77" },
+            { icon: Mail,   label: "Email",  value: "ECoverseas@gmail.com",            href: "mailto:your@gmail.com" },
+            { icon: MapPin, label: "Office", value: "ECoverseas", href: "https://maps.app.goo.gl/3K2yygR7kKj79ta77" },
             { icon: Clock,  label: "Hours",  value: "Mon – Sat, 9 AM – 6 PM",    href: null },
           ].map(item => (
             <div key={item.label} className="flex items-start gap-3">
