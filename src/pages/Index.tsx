@@ -28,6 +28,56 @@ const studentStories = [
 ];
 
 const Index = () => {
+
+  
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const stepsRef = useRef<HTMLDivElement>(null);
+  const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [planeY, setPlaneY] = useState(0);
+  const [activeStep, setActiveStep] = useState(0);
+
+  useEffect(() => {
+  const handleScroll = () => {
+    if (!timelineRef.current || stepRefs.current.length === 0) return;
+
+    const timelineTop = timelineRef.current.getBoundingClientRect().top;
+    const viewportMid = window.innerHeight / 2;
+
+    // Find which step is most visible (closest to viewport center)
+    let closestStep = 0;
+    let closestDist = Infinity;
+
+    stepRefs.current.forEach((el, i) => {
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const stepMid = rect.top + rect.height / 2;
+      const dist = Math.abs(stepMid - viewportMid);
+      if (dist < closestDist) {
+        closestDist = dist;
+        closestStep = i;
+      }
+    });
+
+    setActiveStep(closestStep);
+
+    // Position plane at the active step's icon node
+    const activeEl = stepRefs.current[closestStep];
+    if (activeEl && timelineRef.current) {
+      const activeRect = activeEl.getBoundingClientRect();
+      const timelineRect = timelineRef.current.getBoundingClientRect();
+      const stepMid = activeRect.top + activeRect.height / 2 - timelineRect.top;
+      setPlaneY(stepMid - 20); // -20 to center the 40px plane icon
+    }
+  };
+
+  window.addEventListener("scroll", handleScroll, { passive: true });
+  handleScroll(); // run once on mount
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+
+
+
+
   return (
     <div className="min-h-screen bg-background pt-14">
       {/* Hero */}
@@ -119,9 +169,11 @@ const Index = () => {
        {/* Exams Banner */}
       <ExamBanner />
 
-     {/* Services Roadmap Section */}
-<section className="section-padding bg-gradient-to-b from-primary to-primary/90">
+   {/* Services Roadmap Section */}
+<section className="section-padding bg-white">
   <div className="max-w-3xl mx-auto">
+
+    {/* Section header */}
     <div className="text-center mb-14">
       <motion.div
         initial={{ y: 20, opacity: 0 }}
@@ -129,103 +181,305 @@ const Index = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <span className="inline-block px-3 py-1 rounded-full border border-accent/40 text-accent text-xs font-semibold tracking-widest uppercase mb-4">
-          Your Journey to Studying Abroad
+        <span className="inline-block px-3 py-1 rounded-full bg-orange-50 border border-orange-200 text-orange-500 text-xs font-semibold tracking-widest uppercase mb-4">
+          Our Process
         </span>
+        <h2 className="font-display text-3xl md:text-4xl text-gray-900 mb-4">
+          Your Journey to Studying Abroad
+        </h2>
+        <p className="text-base text-gray-500 max-w-xl mx-auto leading-relaxed">
+          Thousands of students from Kerala have walked this path before you —
+          from a single conversation in our Thodupuzha office to receiving their
+          university offer letter abroad. We don't just process applications;
+          we build futures, one student at a time.
+        </p>
+      </motion.div>
+    </div>
+              {/* Timeline with scroll-driven plane */}
+<div className="relative" ref={timelineRef}>
+  {/* Vertical connector line — desktop */}
+  <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px -translate-x-px bg-gradient-to-b from-orange-400 via-orange-200 to-transparent" />
+  {/* Vertical connector line — mobile */}
+  <div className="md:hidden absolute left-5 top-0 bottom-0 w-px bg-gradient-to-b from-orange-400 via-orange-200 to-transparent" />
+
+  {/* Scroll-driven plane icon */}
+  <motion.div
+    className="absolute z-20 hidden md:flex items-center justify-center"
+    style={{
+      top: planeY,
+      left: "calc(50% - 20px)",
+      width: 40,
+      height: 40,
+    }}
+  >
+    <div className="w-10 h-10 rounded-full bg-orange-500 shadow-lg shadow-orange-200 flex items-center justify-center ring-4 ring-white">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="white"
+        className="w-5 h-5"
+        style={{ transform: "rotate(90deg)" }}
+      >
+        <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
+      </svg>
+    </div>
+  </motion.div>
+
+  <div className="space-y-8" ref={stepsRef}>
+    {[
+      { icon: MessageSquare, title: "Discuss",       description: "1-on-1 counselling with our experts to understand your goals, budget, and academic background." },
+      { icon: Lightbulb,    title: "Ideate",         description: "We shortlist the best-fit universities and programs tailored precisely to your profile." },
+      { icon: Wallet,       title: "Finance",        description: "Guidance on scholarships, education loans, and financial planning so cost is never a barrier." },
+      { icon: FileCheck,    title: "Visa",           description: "End-to-end visa documentation support with a consistently high approval rate." },
+      { icon: Home,         title: "Accommodation",  description: "We help you find safe, affordable housing so you land with a home already waiting." },
+      { icon: Award,        title: "PR Assistance",  description: "Post-study permanent residency guidance so you can build your future abroad." },
+    ].map((step, i) => {
+      const isRight = i % 2 === 0;
+      return (
+        <motion.div
+          key={step.title}
+          ref={el => { stepRefs.current[i] = el; }}
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.4, delay: i * 0.07 }}
+        >
+          {/* Mobile layout */}
+          <div className="flex items-start gap-4 md:hidden pl-1">
+            <div className="relative z-10 w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center shadow-lg shrink-0 ring-2 ring-orange-100 ring-offset-2 ring-offset-white">
+              <step.icon className="h-4 w-4 text-white" />
+            </div>
+            <div className="pt-1">
+              <p className="text-xs font-bold tracking-widest text-orange-500 uppercase mb-1">Step {i + 1}</p>
+              <h3 className="font-display text-xl text-gray-900">{step.title}</h3>
+              <p className="text-sm text-gray-500 leading-relaxed mt-1">{step.description}</p>
+            </div>
+          </div>
+
+          {/* Desktop layout */}
+          <div className="hidden md:grid md:grid-cols-[1fr_80px_1fr] md:items-center">
+            <div className={isRight ? "pr-8 text-right" : ""}>
+              {isRight && (
+                <>
+                  <p className="text-xs font-bold tracking-widest text-orange-500 uppercase mb-1">Step {i + 1}</p>
+                  <h3 className="font-display text-xl md:text-2xl text-gray-900">{step.title}</h3>
+                  <p className="text-sm text-gray-500 leading-relaxed mt-1">{step.description}</p>
+                </>
+              )}
+            </div>
+            <div className="flex justify-center">
+              <div className={`relative z-10 w-10 h-10 rounded-full flex items-center justify-center shadow-lg ring-2 ring-offset-2 ring-offset-white transition-all duration-300 ${
+                activeStep === i
+                  ? "bg-orange-500 ring-orange-300 scale-110"
+                  : "bg-gradient-to-br from-orange-400 to-orange-600 ring-orange-100"
+              }`}>
+                <step.icon className="h-4 w-4 text-white" />
+              </div>
+            </div>
+            <div className={!isRight ? "pl-8" : ""}>
+              {!isRight && (
+                <>
+                  <p className="text-xs font-bold tracking-widest text-orange-500 uppercase mb-1">Step {i + 1}</p>
+                  <h3 className="font-display text-xl md:text-2xl text-gray-900">{step.title}</h3>
+                  <p className="text-sm text-gray-500 leading-relaxed mt-1">{step.description}</p>
+                </>
+              )}
+            </div>
+          </div>
+        </motion.div>
+      );
+    })}
+  </div>
+</div>
+    
+    
+  </div>
+</section>
+{/* Why Choose Us Section */}
+<section className="section-padding bg-gray-50">
+  <div className="max-w-5xl mx-auto">
+
+    {/* Header */}
+    <div className="text-center mb-16">
+      <motion.div
+        initial={{ y: 20, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        <span className="inline-block px-3 py-1 rounded-full bg-orange-50 border border-orange-200 text-orange-500 text-xs font-semibold tracking-widest uppercase mb-4">
+          Why EC Overseas
+        </span>
+        <h2 className="font-display text-4xl md:text-5xl text-gray-900 mb-5">
+          We've Been Where<br className="hidden md:block" /> You're Going
+        </h2>
+        <p className="text-base text-gray-500 max-w-xl mx-auto leading-relaxed">
+          EC Overseas was built in Thodupuzha with one purpose — to give every
+          Kerala student the same shot at a world-class education that was once
+          only available to the privileged few.
+        </p>
       </motion.div>
     </div>
 
-    <div className="relative">
-      {/* Vertical connector line — desktop only */}
-      <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px -translate-x-px bg-gradient-to-b from-accent/60 via-accent/30 to-transparent" />
+    {/* Top feature row — 2 large cards */}
+    <div className="grid md:grid-cols-2 gap-5 mb-5">
 
-      {/* Mobile connector line */}
-      <div className="md:hidden absolute left-5 top-0 bottom-0 w-px bg-gradient-to-b from-accent/60 via-accent/30 to-transparent" />
+      {/* Card 1 — image left */}
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="relative overflow-hidden rounded-3xl bg-orange-500 min-h-[260px] flex flex-col justify-end p-8"
+      >
+        {/* Background pattern */}
+        <div className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: `radial-gradient(circle at 20% 50%, white 1px, transparent 1px),
+                              radial-gradient(circle at 80% 20%, white 1px, transparent 1px)`,
+            backgroundSize: "40px 40px"
+          }}
+        />
+        {/* Large emoji illustration */}
+        <div className="absolute top-6 right-6 text-7xl opacity-20 select-none">🎓</div>
+        <div className="absolute top-8 right-8 text-6xl select-none">🎓</div>
 
-      <div className="space-y-8">
-        {[
-          { icon: MessageSquare, title: "Discuss",      description: "1-on-1 counselling with our experts to understand your goals and aspirations." },
-          { icon: Lightbulb,    title: "Ideate",        description: "We shortlist the best-fit universities and programs tailored to your profile." },
-          { icon: Wallet,       title: "Finance",       description: "Guidance on scholarships, education loans, and financial planning for your journey." },
-          { icon: FileCheck,    title: "Visa",          description: "End-to-end visa documentation support with high approval rates." },
-          { icon: Home,         title: "Accommodation", description: "We help you find safe, affordable housing before you land." },
-          { icon: Award,        title: "PR Assistance", description: "Post-study permanent residency guidance so you can build your future abroad." },
-        ].map((step, i) => {
-          const isRight = i % 2 === 0;
-          return (
-            <motion.div
-              key={step.title}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.4, delay: i * 0.07 }}
-            >
-              {/* Mobile layout */}
-              <div className="flex items-start gap-4 md:hidden pl-1">
-                <div className="relative z-10 w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center shadow-lg shrink-0 ring-2 ring-white/10 ring-offset-2 ring-offset-primary">
-                  <step.icon className="h-4 w-4 text-white" />
-                </div>
-                <div className="pt-1">
-                  <p className="text-xs font-bold tracking-widest text-orange-400 uppercase mb-1">
-                    Step {i + 1}
-                  </p>
-                  <h3 className="font-display text-xl text-primary-foreground">{step.title}</h3>
-                  <p className="text-sm text-primary-foreground/60 leading-relaxed mt-1">
-                    {step.description}
-                  </p>
-                </div>
-              </div>
+        <div className="relative z-10">
+          <span className="inline-block text-orange-100 text-xs font-bold tracking-widest uppercase mb-3">
+            Our People
+          </span>
+          <h3 className="font-display text-2xl md:text-3xl text-white mb-2">
+            Expert Counsellors,<br />Not Sales Agents
+          </h3>
+          <p className="text-orange-100 text-sm leading-relaxed max-w-xs">
+            Our team has personally studied or worked abroad. You get honest
+            advice — even if it means recommending a different path.
+          </p>
+        </div>
+      </motion.div>
 
-              {/* Desktop layout — stable 3-column grid */}
-              <div className="hidden md:grid md:grid-cols-[1fr_80px_1fr] md:items-center">
-                {/* Left cell */}
-                <div className={isRight ? "pr-8 text-right" : ""}>
-                  {isRight && (
-                    <>
-                      <p className="text-xs font-bold tracking-widest text-orange-400 uppercase mb-1">
-                        Step {i + 1}
-                      </p>
-                      <h3 className="font-display text-xl md:text-2xl text-primary-foreground">
-                        {step.title}
-                      </h3>
-                      <p className="text-sm text-primary-foreground/60 leading-relaxed mt-1">
-                        {step.description}
-                      </p>
-                    </>
-                  )}
-                </div>
+      {/* Card 2 — stat focus */}
+      <motion.div
+        initial={{ opacity: 0, x: 20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="relative overflow-hidden rounded-3xl bg-gray-900 min-h-[260px] flex flex-col justify-between p-8"
+      >
+        <div className="absolute inset-0 opacity-5"
+          style={{
+            backgroundImage: `linear-gradient(45deg, white 25%, transparent 25%),
+                              linear-gradient(-45deg, white 25%, transparent 25%)`,
+            backgroundSize: "20px 20px"
+          }}
+        />
+        <div className="absolute bottom-0 right-0 text-[120px] leading-none opacity-5 select-none font-bold text-white">
+          10K
+        </div>
 
-                {/* Center icon node — always in column 2 */}
-                <div className="flex justify-center">
-                  <div className="relative z-10 w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center shadow-lg ring-2 ring-white/10 ring-offset-2 ring-offset-primary">
-                    <step.icon className="h-4 w-4 text-white" />
-                  </div>
-                </div>
+        <div className="relative z-10">
+          <span className="inline-block text-gray-400 text-xs font-bold tracking-widest uppercase mb-3">
+            Track Record
+          </span>
+          <div className="font-display text-6xl md:text-7xl text-white mb-1">10K+</div>
+          <div className="text-orange-400 font-semibold text-lg mb-3">Success Stories</div>
+          <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
+            A decade of helping Kerala students reach universities across
+            the world. Your dream is familiar territory for us.
+          </p>
+        </div>
 
-                {/* Right cell */}
-                <div className={!isRight ? "pl-8" : ""}>
-                  {!isRight && (
-                    <>
-                      <p className="text-xs font-bold tracking-widest text-orange-400 uppercase mb-1">
-                        Step {i + 1}
-                      </p>
-                      <h3 className="font-display text-xl md:text-2xl text-primary-foreground">
-                        {step.title}
-                      </h3>
-                      <p className="text-sm text-primary-foreground/60 leading-relaxed mt-1">
-                        {step.description}
-                      </p>
-                    </>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          );
-        })}
-      </div>
+        <div className="relative z-10 flex gap-2 mt-4">
+          {["🇮🇪", "🇬🇧", "🇨🇦", "🇦🇺", "🇳🇿", "🇩🇪"].map(flag => (
+            <span key={flag} className="text-2xl">{flag}</span>
+          ))}
+        </div>
+      </motion.div>
     </div>
+
+    {/* Bottom row — 3 smaller cards */}
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4, delay: 0.1 }}
+        className="rounded-3xl bg-white border border-gray-100 p-7 flex flex-col gap-4 shadow-sm hover:shadow-md transition-shadow"
+      >
+        <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center">
+          <FileCheck className="h-6 w-6 text-blue-500" />
+        </div>
+        <div>
+          <h3 className="font-display text-xl text-gray-900 mb-2">End-to-End Support</h3>
+          <p className="text-sm text-gray-500 leading-relaxed">
+            Counselling, applications, visas, accommodation, and PR — handled
+            under one roof so nothing slips through the cracks.
+          </p>
+        </div>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4, delay: 0.2 }}
+        className="rounded-3xl bg-orange-50 border border-orange-100 p-7 flex flex-col gap-4 shadow-sm hover:shadow-md transition-shadow"
+      >
+        <div className="w-12 h-12 rounded-2xl bg-orange-100 flex items-center justify-center">
+          <Wallet className="h-6 w-6 text-orange-500" />
+        </div>
+        <div>
+          <h3 className="font-display text-xl text-gray-900 mb-2">No Hidden Costs</h3>
+          <p className="text-sm text-gray-500 leading-relaxed">
+            Transparent pricing from day one. We help you find scholarships
+            and loans so finances never stand between you and your future.
+          </p>
+        </div>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4, delay: 0.3 }}
+        className="rounded-3xl bg-white border border-gray-100 p-7 flex flex-col gap-4 shadow-sm hover:shadow-md transition-shadow"
+      >
+        <div className="w-12 h-12 rounded-2xl bg-green-50 flex items-center justify-center">
+          <Award className="h-6 w-6 text-green-600" />
+        </div>
+        <div>
+          <h3 className="font-display text-xl text-gray-900 mb-2">Certified & Recognised</h3>
+          <p className="text-sm text-gray-500 leading-relaxed">
+            Officially recognised by universities across Ireland, UK, Canada
+            and Australia. Your application carries real weight.
+          </p>
+        </div>
+      </motion.div>
+    </div>
+
+    {/* Bottom CTA */}
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: 0.3 }}
+      className="mt-12 text-center"
+    >
+      <p className="text-gray-400 text-sm mb-5">
+        Our counsellors are available six days a week — no appointment needed.
+      </p>
+      <Link
+        to="/contact"
+        className="inline-flex items-center gap-2 h-12 px-8 bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-xl transition-colors"
+      >
+        Book a Free Consultation <ArrowRight className="h-4 w-4" />
+      </Link>
+    </motion.div>
+
   </div>
 </section>
+
       {/* Featured Universities
       <section className="section-padding bg-secondary/50">
         <div className="max-w-6xl mx-auto">
@@ -439,7 +693,7 @@ const Index = () => {
               <li>
                 <a href="mailto:your@gmail.com" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
                   <Mail className="h-4 w-4 shrink-0 text-accent" />
-                  <span>your@gmail.com</span>
+                  <span>offer.tdpa@gmail.com</span>
                 </a>
               </li>
               <li>
@@ -511,6 +765,7 @@ const Index = () => {
     </div>
   );
 };
+
 function DestinationSlideshow({ countries }: { countries: typeof allCountries }) {
   const [paused, setPaused] = useState(false);
 
@@ -531,7 +786,7 @@ function DestinationSlideshow({ countries }: { countries: typeof allCountries })
         {/* Render twice for seamless loop */}
         {[...countries, ...countries].map((country, i) => (
           <Link
-            key={`${country.id}-${i}`}
+            key={`${country.id}-${i}`} // Append the index to ensure unique keys
             to={`/country/${country.id}`}
             className="flex flex-col items-center w-[100px] md:w-[120px] shrink-0 group"
           >
@@ -551,6 +806,7 @@ function DestinationSlideshow({ countries }: { countries: typeof allCountries })
     </div>
   );
 }
+
 
 function ExamBanner() {
   const images = [examImage, examImage2, examImage3];
@@ -578,6 +834,7 @@ function ExamBanner() {
     </section>
   );
 }
+
 
 export default Index;
 
@@ -632,3 +889,4 @@ function ServiceCard({ service, index }: { service: ServiceItem; index: number }
     </motion.div>
   );
 }
+

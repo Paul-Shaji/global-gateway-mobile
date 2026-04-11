@@ -116,9 +116,9 @@ const allCountryFilters = [
   { id: "all", name: "All" },
   { id: "australia", name: "Australia" },
   { id: "uk", name: "UK" },
-  { id: "japan", name: "Japan" },
-  { id: "spain", name: "Spain" },
-  { id: "italy", name: "Italy" },
+  { id: "canada", name: "Canada" },
+  { id: "germany", name: "Germany" },
+  { id: "ireland", name: "Ireland" },
 ];
 
 const accentColors = [

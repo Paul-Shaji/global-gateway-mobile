@@ -48,9 +48,9 @@ export const regions: Region[] = [
   {
     name: "Asia",
     countries: [
-      { id: "japan", name: "Japan", flag: "🇯🇵", region: "Asia", tagline: "Ancient traditions meet cutting-edge innovation", programCount: 10, universityCount: 6 },
+     
       { id: "singapore", name: "Singapore", flag: "🇸🇬", region: "Asia", tagline: "Global hub of excellence", programCount: 4, universityCount: 3 },
-      { id: "thailand", name: "Thailand", flag: "🇹🇭", region: "Asia", tagline: "Tropical learning adventures", programCount: 3, universityCount: 2 },
+     
     ],
   },
   {

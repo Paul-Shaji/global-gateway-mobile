@@ -126,9 +126,9 @@ export function MobileNav() {
               className="w-8 h-6 rounded object-cover shrink-0"
             />
             <span className="text-sm font-medium text-foreground">{c.name}</span>
-            {c.programCount && (
+            {/* {c.programCount && (
               <span className="ml-auto text-xs text-muted-foreground">{c.programCount} programs</span>
-            )}
+            )} */}
           </Link>
         ))}
 

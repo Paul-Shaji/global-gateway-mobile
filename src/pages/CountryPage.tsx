@@ -76,8 +76,8 @@ const CountryPage = () => {
         {/* Quick stats - horizontal scroll */}
         <div className="mt-4 flex gap-3 overflow-x-auto pb-2 -mx-4 px-4 snap-x">
           {[
-            { icon: GraduationCap, label: "Programs", value: country.programCount },
-            { icon: Building2, label: "Universities", value: country.universityCount },
+            // { icon: GraduationCap, label: "Programs", value: country.programCount },
+            // { icon: Building2, label: "Universities", value: country.universityCount },
             { icon: FileText, label: "Visa", value: "Required" },
           ].map(stat => (
             <div key={stat.label} className="snap-start shrink-0 bg-card rounded-xl p-4 shadow-soft border border-border min-w-[120px] text-center">
@@ -98,7 +98,7 @@ const CountryPage = () => {
         </CollapsibleSection>
 
         {/* Programs */}
-        <CollapsibleSection title={`Programs Available (${countryPrograms.length})`} defaultOpen>
+        {/* <CollapsibleSection title={`Programs Available (${countryPrograms.length})`} defaultOpen>
           <div className="space-y-3">
             {countryPrograms.length > 0 ? countryPrograms.map(p => (
               <Link
@@ -118,9 +118,9 @@ const CountryPage = () => {
               <p className="text-muted-foreground">Programs coming soon for this destination.</p>
             )}
           </div>
-        </CollapsibleSection>
-
-        {/* Universities */}
+        </CollapsibleSection> */}
+{/* 
+        Universities
         <CollapsibleSection title={`Partner Universities (${countryUniversities.length})`}>
           <div className="flex gap-3 overflow-x-auto pb-2 -mx-1 px-1">
             {countryUniversities.length > 0 ? countryUniversities.map(u => (
@@ -141,7 +141,7 @@ const CountryPage = () => {
               <p className="text-muted-foreground">University partnerships coming soon.</p>
             )}
           </div>
-        </CollapsibleSection>
+        </CollapsibleSection> */}
 
         {/* FAQ */}
         <CollapsibleSection title="FAQ">
