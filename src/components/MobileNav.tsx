@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { AlignLeft, X, Search, ChevronRight, ChevronLeft, GraduationCap } from "lucide-react";
+import { AlignLeft, X, Search, ChevronRight, ChevronLeft, GraduationCap, ChevronDown } from "lucide-react";
 import { allCountries, regions, type Country } from "@/data/countries";
 import { universities, type University } from "@/data/universities";
 import { Button } from "@/components/ui/button";
@@ -80,27 +80,87 @@ export function MobileNav() {
   />
 </Link>
 
-        {/* Desktop nav links */}
-        <nav className="hidden md:flex items-center gap-1">
-          {[
-            { label: "Countries", path: "/search" },
-            { label: "Universities", path: "/search" },
-            { label: "Stories", path: "/stories" },
-            { label: "About Us", path: "/about" },
-            { label: "Contact", path: "/contact" },
-          ].map(item => (
-            <Link
-              key={item.label}
-              to={item.path}
-              className="px-3 py-2 text-sm font-medium transition-colors rounded-lg hover:bg-secondary text-center text-primary-foreground"
-            >
-              {item.label}
-            </Link>
-          ))}
-          <Button className="ml-2 h-9 bg-accent text-accent-foreground hover:bg-accent/90" asChild>
-            <Link to="/contact">Apply Now</Link>
-          </Button>
-        </nav>
+ {/* Desktop nav links */}
+<nav className="hidden md:flex items-center gap-1">
+  <div className="relative group">
+    <button
+      className="px-3 py-2 text-sm font-medium transition-colors rounded-lg hover:bg-secondary text-primary-foreground flex items-center gap-1"
+    >
+      Countries
+      <ChevronDown className="h-4 w-4 opacity-60 group-hover:opacity-100 transition-opacity" />
+    </button>
+
+    {/* Dropdown */}
+    <div className="absolute top-full left-0 mt-2 w-72 bg-background border border-border rounded-xl shadow-xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-150 z-50">
+      {/* Search input */}
+      <div className="p-3 border-b border-border">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <input
+            type="text"
+            placeholder="Search countries..."
+            value={countrySearch}
+            onChange={e => setCountrySearch(e.target.value)}
+            className="w-full h-10 pl-9 pr-3 rounded-lg bg-secondary border-none text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent"
+          />
+        </div>
+      </div>
+
+      {/* Country list */}
+      <div className="max-h-72 overflow-y-auto py-1">
+        {(countrySearch
+          ? allCountries.filter(c =>
+              c.name.toLowerCase().includes(countrySearch.toLowerCase())
+            )
+          : allCountries
+        ).map(c => (
+          <Link
+            key={c.id}
+            to={`/country/${c.id}`}
+            className="flex items-center gap-3 px-3 py-2.5 hover:bg-secondary transition-colors"
+            onClick={() => setCountrySearch("")}
+          >
+            <img
+              src={getFlagUrl(c.id, 40)}
+              alt={c.name}
+              className="w-8 h-6 rounded object-cover shrink-0"
+            />
+            <span className="text-sm font-medium text-foreground">{c.name}</span>
+            {c.programCount && (
+              <span className="ml-auto text-xs text-muted-foreground">{c.programCount} programs</span>
+            )}
+          </Link>
+        ))}
+
+        {countrySearch &&
+          allCountries.filter(c =>
+            c.name.toLowerCase().includes(countrySearch.toLowerCase())
+          ).length === 0 && (
+          <p className="px-4 py-6 text-center text-sm text-muted-foreground">No countries found</p>
+        )}
+      </div>
+    </div>
+  </div>
+
+  {[
+    { label: "Stories", path: "/stories" },
+    { label: "About Us", path: "/about" },
+    { label: "Contact", path: "/contact" },
+  ].map(item => (
+    <Link
+      key={item.label}
+      to={item.path}
+      className="px-3 py-2 text-sm font-medium transition-colors rounded-lg hover:bg-secondary text-primary-foreground"
+    >
+      {item.label}
+    </Link>
+  ))}
+
+  <Button className="ml-2 h-9 bg-accent text-accent-foreground hover:bg-accent/90" asChild>
+    <Link to="/contact">Apply Now</Link>
+  </Button>
+
+</nav>
 
         {/* Mobile controls */}
         <div className="flex md:hidden items-center gap-1">
@@ -118,6 +178,80 @@ export function MobileNav() {
           >
             <AlignLeft className="h-6 w-6 text-primary-foreground" />
           </button>
+
+          {panel === "countries" && (
+                <motion.div
+                  key="countries"
+                  initial={{ x: 40, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: 40, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="h-full flex flex-col"
+                >
+                  <div className="h-14 flex items-center justify-between px-4 border-b border-border">
+                    <button onClick={() => setPanel("main")} className="touch-target flex items-center gap-1 text-muted-foreground">
+                      <ChevronLeft className="h-5 w-5" /> Back
+                    </button>
+                    <span className="font-display text-lg text-foreground">Countries</span>
+                    <button onClick={close} className="touch-target flex items-center justify-center" aria-label="Close">
+                      <X className="h-6 w-6 text-foreground" />
+                    </button>
+                  </div>
+                  <div className="px-4 py-3 border-b border-border">
+                    <div className="relative">
+                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                      <input
+                        type="text"
+                        placeholder="Search countries..."
+                        value={countrySearch}
+                        onChange={e => setCountrySearch(e.target.value)}
+                        className="w-full h-11 pl-10 pr-10 rounded-lg bg-secondary border-none text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent"
+                      />
+                      {countrySearch && (
+                        <button onClick={() => setCountrySearch("")} className="absolute right-3 top-1/2 -translate-y-1/2">
+                          <X className="h-4 w-4 text-muted-foreground" />
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                  <div className="flex-1 overflow-y-auto">
+                    {filteredCountries ? (
+                      filteredCountries.length > 0 ? (
+                        <div className="py-2">
+                          {filteredCountries.map(c => (
+                            <CountryItem key={c.id} country={c} onClick={() => handleNavClick(`/country/${c.id}`)} />
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="p-8 text-center text-muted-foreground">No countries found</p>
+                      )
+                    ) : (
+                      <>
+                        <RegionSection
+                          title="Popular Destinations"
+                          countries={popularCountries}
+                          expanded={expandedRegions.includes("Popular Destinations")}
+                          onToggle={() => toggleRegion("Popular Destinations")}
+                          onCountryClick={id => handleNavClick(`/country/${id}`)}
+                        />
+                        {regions.map(r => (
+                          <RegionSection
+                            key={r.name}
+                            title={`${r.name} (${r.countries.length})`}
+                            countries={r.countries}
+                            expanded={expandedRegions.includes(r.name)}
+                            onToggle={() => toggleRegion(r.name)}
+                            onCountryClick={id => handleNavClick(`/country/${id}`)}
+                            limit={5}
+                          />
+                        ))}
+                      </>
+                    )}
+                  </div>
+                </motion.div>
+              )}
+
+
         </div>
       </header>
 

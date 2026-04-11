@@ -33,8 +33,8 @@ const Index = () => {
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroImage} alt="European university campus" className="hidden md:block w-full h-full object-cover" width={1920} height={1080} />
-          <img src={heroImageMobile} alt="European university campus" className="md:hidden w-full h-full object-cover" width={768} height={1080} />
+          <img src={heroImage} alt="European university campus" fetchPriority="high" className="hidden md:block w-full h-full object-cover" width={1920} height={1080} />
+          <img src={heroImageMobile} alt="European university campus" fetchPriority="high" className="md:hidden w-full h-full object-cover" width={768} height={1080} />
           <div className="absolute inset-0  from-foreground/60 via-foreground/40 to-foreground/70" />
         </div>
         <div className="relative flex flex-col justify-between min-h-[420px] md:min-h-[560px] px-4 pt-12 pb-6 max-w-4xl mx-auto">
@@ -110,7 +110,7 @@ const Index = () => {
       <section className="section-padding">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="font-display text-2xl md:text-3xl text-foreground">Popular Destinations</h2>
+            <h3 className="font-display  text-foreground">POPULAR DESTINATIONS</h3>
           </div>
           <DestinationSlideshow countries={allCountries} />
         </div>

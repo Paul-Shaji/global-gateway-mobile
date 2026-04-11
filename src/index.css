@@ -7,6 +7,7 @@
   to   { transform: translateX(-50%); }
 }
 
+
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap');
 
 @layer base {
@@ -51,7 +52,7 @@
     --gold: 40 70% 55%;
     --sage: 150 20% 45%;
 
-    --font-display: 'DM Serif Display', Georgia, serif;
+    --font-display: "Cormorant Garamond", Georgia, serif;
     --font-body: 'Inter', system-ui, sans-serif;
 
     --shadow-soft: 0 2px 15px -3px hsl(220 40% 13% / 0.08);

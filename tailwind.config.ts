@@ -18,8 +18,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["var(--font-display)"],
+        display: ["var(--font-display)", "Playfair Display", "Georgia", "serif"],
         body: ["var(--font-body)"],
+
       },
       colors: {
         border: "hsl(var(--border))",
