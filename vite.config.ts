@@ -17,7 +17,7 @@ export default defineConfig(({ mode }) => ({
     react(),
     mode === "development" && componentTagger(),
     sitemap({
-      hostname: "https://ecoverseas.in",
+      hostname: "https://www.ecoverseas.in",
       dynamicRoutes: [
         
         "/about",
