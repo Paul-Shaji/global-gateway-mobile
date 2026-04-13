@@ -26,7 +26,7 @@ export default defineConfig(({ mode }) => ({
         "/search",
         "/country/ireland",
         "/country/uk",
-        "/country/canada",
+        "/country/ca",
         "/country/australia",
         "/country/new-zealand",
         "/country/germany",

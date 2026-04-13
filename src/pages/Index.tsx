@@ -294,7 +294,7 @@ function ContactPopup({ visible, closing, close }: ContactPopupProps) {
               </Link>
 
               <a
-                href="https://wa.me/919778558140"
+                href="https://wa.me/919778358140"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={close}
@@ -446,7 +446,7 @@ const Index = () => {
             {/* Desktop */}
             <Link
               to="/contact"
-              className="hidden md:inline-flex items-center gap-3 h-14 px-6 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 hover:bg-white/20 transition-colors"
+              className="hidden md:inline-flex items-center gap-3 h-14 px-6 bg-white/20 backdrop-blur-md rounded-2xl border border-white/70 hover:bg-white/40 transition-colors"
             >
               <Mail className="h-5 w-5 text-white/70 shrink-0" />
               <span className="text-base text-white/70">Contact Us</span>
@@ -455,10 +455,10 @@ const Index = () => {
             {/* Mobile */}
             <Link
               to="/contact"
-              className="inline-flex md:hidden items-center gap-2 h-12 px-5 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 hover:bg-white/20 transition-colors"
+              className="inline-flex md:hidden items-center gap-2 h-12 px-5 bg-white/10 backdrop-blur-md rounded-2xl border border-white/70 hover:bg-white/20 transition-colors"
             >
               <Mail className="h-4 w-4 text-white/70 shrink-0" />
-              <span className="text-sm text-white/70">Contact Us</span>
+              <span className="text-sm text-white/100">Contact Us</span>
             </Link>
           </motion.div>
         </div>
@@ -1343,7 +1343,7 @@ const Index = () => {
 
       {/* ── WhatsApp Floating Button ── */}
       <a
-        href="https://wa.me/9778558140"
+        href="https://wa.me/9778358140"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
