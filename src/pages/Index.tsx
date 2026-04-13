@@ -210,8 +210,28 @@ function ContactPopup({ visible, closing, close }: ContactPopupProps) {
           y: closing ? 40 : 0,
         }}
         transition={{ type: "spring", damping: 20, stiffness: 260 }}
-        className="fixed inset-0 z-[201] flex items-center justify-center px-4 pointer-events-none"
+        className="fixed inset-0 z-[201] flex flex-col items-center justify-center px-4 pointer-events-none"
       >
+
+<div className="flex items-center justify-end w-full max-w-md mb-3 pointer-events-auto">
+<button
+            onClick={close}
+            className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors"
+            aria-label="Close"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              className="w-4 h-4 text-white"
+              fill="none"
+              stroke="white"
+              strokeWidth={2.5}
+              strokeLinecap="round"
+            >
+              <path d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          </div>
+
         <div className="relative w-full max-w-md pointer-events-auto overflow-hidden rounded-3xl shadow-2xl">
           {/* Background gradient */}
           <div className="absolute inset-0 bg-gradient-to-br from-orange-500 via-orange-600 to-amber-600" />
@@ -223,7 +243,7 @@ function ContactPopup({ visible, closing, close }: ContactPopupProps) {
 
           {/* Dot pattern */}
           <div
-            className="absolute inset-0 opacity-10"
+            className="absolute inset-0 opacity-10" onClick={e => e.stopPropagation()} 
             style={{
               backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)",
               backgroundSize: "24px 24px",
@@ -231,21 +251,7 @@ function ContactPopup({ visible, closing, close }: ContactPopupProps) {
           />
 
           {/* Close button */}
-          <button
-            onClick={close}
-            className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors"
-            aria-label="Close"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              className="w-4 h-4 text-white"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2.5}
-            >
-              <path d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+      
 
           {/* Content */}
           <div className="relative z-10 p-8">
