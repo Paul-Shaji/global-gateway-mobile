@@ -20,6 +20,7 @@ export default {
       fontFamily: {
         display: ["var(--font-display)", "Playfair Display", "Georgia", "serif"],
         body: ["var(--font-body)"],
+        bebas: ["Bebas Neue", "sans-serif"],
 
       },
       colors: {

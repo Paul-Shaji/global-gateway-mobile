@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => ({
     sitemap({
       hostname: "https://ecoverseas.in",
       dynamicRoutes: [
-        "/",
+        
         "/about",
         "/contact",
         "/stories",
