@@ -88,39 +88,41 @@ export function MobileNav() {
       <ChevronDown className="h-4 w-4 opacity-60 group-hover:opacity-100 transition-opacity" />
     </button>
 
-    {/* Dropdown */}
-    <div className="absolute top-full left-0 mt-2 w-72 bg-background border border-border rounded-xl shadow-xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-150 z-50">
-      {/* Search input */}
-      <div className="p-3 border-b border-border">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <input
-            type="text"
-            placeholder="Search countries..."
-            value={countrySearch}
-            onChange={e => setCountrySearch(e.target.value)}
-            className="w-full h-10 pl-9 pr-3 rounded-lg bg-secondary border-none text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent"
-          />
-        </div>
-      </div>
-
-      {/* Country list */}
-            <div className="flex-1 overflow-y-auto">
-        {filteredCountries.length > 0 ? (
-          <div className="py-2">
-            {filteredCountries.map(c => (
-              <CountryItem
-                key={c.id}
-                country={c}
-                onClick={() => handleNavClick(`/country/${c.id}`)}
-              />
-            ))}
-          </div>
-        ) : (
-          <p className="p-8 text-center text-muted-foreground">No countries found</p>
-        )}
+    <div className="absolute top-full left-0 w-72 pt-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-150 z-50">
+  <div className="bg-background border border-border rounded-xl shadow-xl">
+    {/* Search input */}
+    <div className="p-3 border-b border-border">
+      <div className="relative">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <input
+          type="text"
+          placeholder="Search countries..."
+          value={countrySearch}
+          onChange={e => setCountrySearch(e.target.value)}
+          className="w-full h-10 pl-9 pr-3 rounded-lg bg-secondary border-none text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent"
+        />
       </div>
     </div>
+
+    {/* Country list */}
+    <div className="flex-1 overflow-y-auto">
+      {filteredCountries.length > 0 ? (
+        <div className="py-2">
+          {filteredCountries.map(c => (
+            <CountryItem
+              key={c.id}
+              country={c}
+              onClick={() => handleNavClick(`/country/${c.id}`)}
+            />
+          ))}
+        </div>
+      ) : (
+        <p className="p-8 text-center text-muted-foreground">No countries found</p>
+      )}
+    </div>
+  </div>
+</div>
+   
   </div>
 
   {[
@@ -154,7 +156,7 @@ export function MobileNav() {
           </button>
           <button
             onClick={() => setOpen(true)}
-            className="touch-target flex items-center justify-center rounded-lg hover:bg-secondary transition-colors text-primary-foreground"
+            className="touch-target flex items-center justify-center rounded-lg hover:bg-gray-300 transition-colors text-primary-foreground"
             aria-label="Open menu"
           >
             <AlignLeft className="h-6 w-6 text-primary-foreground" />
