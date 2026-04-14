@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 import { ChevronLeft, Share2, MapPin, Globe, FileText, ChevronDown } from "lucide-react";
 import { getFlagUrl } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { allCountries } from "@/data/countries";
+import { popularCountries } from "@/data/countries";
 
 const CountryPage = () => {
   const { id } = useParams<{ id: string }>();
-  const country = allCountries.find(c => c.id === id);
+  const country = popularCountries.find(c => c.id === id);
 
   if (!country) {
     return (
@@ -61,7 +61,7 @@ const CountryPage = () => {
               <h1 className="font-display text-3xl md:text-4xl text-white leading-tight">
                 {country.name}
               </h1>
-              <p className="text-white/70 text-sm italic mt-0.5">{country.tagline}</p>
+              <p className="text-white/70 text-sm italic mt-0.5 ">{country.tagline}</p>
             </div>
           </div>
         </div>
@@ -100,7 +100,7 @@ const CountryPage = () => {
           className="bg-card rounded-2xl border border-border p-6 shadow-sm"
         >
           <h2 className="font-display text-xl text-foreground mb-3">About {country.name}</h2>
-          <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
+          <p className="text-muted-foreground leading-relaxed text-sm md:text-base text-justify">
             {country.description}
           </p>
         </motion.div>

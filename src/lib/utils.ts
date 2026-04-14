@@ -15,7 +15,7 @@ const countryCodeMap: Record<string, string> = {
   greece: "gr", poland: "pl", finland: "fi", "south-africa": "za",
   thailand: "th", argentina: "ar", chile: "cl", colombia: "co",
   "costa-rica": "cr", egypt: "eg", israel: "il", kenya: "ke",
-  morocco: "ma", peru: "pe", "united-kingdom": "gb",
+  morocco: "ma", peru: "pe", "united-kingdom": "gb","europe": "eu",
 };
 
 export function getFlagUrl(countryId: string, size: number = 40): string {
