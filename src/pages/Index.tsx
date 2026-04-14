@@ -20,7 +20,7 @@ import {
   Home,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { allCountries } from "@/data/countries";
+import { popularCountries } from "@/data/countries";
 import { programs } from "@/data/universities";
 import { getFlagUrl } from "@/lib/utils";
 import heroImage from "@/assets/WEBSITE_COVER_PAGE_ENGLISH.jpg.jpeg";
@@ -112,7 +112,7 @@ const roadmapSteps = [
 // Sub-components
 // ---------------------------------------------------------------------------
 
-function DestinationSlideshow({ countries }: { countries: typeof allCountries }) {
+function DestinationSlideshow({ countries }: { countries: typeof popularCountries }) {
   const [paused, setPaused] = useState(false);
 
   return (
@@ -478,7 +478,7 @@ const Index = () => {
               Popular Destinations
             </h3>
           </div>
-          <DestinationSlideshow countries={allCountries} />
+          <DestinationSlideshow countries={popularCountries} />
         </div>
       </section>
 
@@ -542,7 +542,7 @@ const Index = () => {
             className="absolute inset-0"
             style={{
               backgroundImage:
-                "radial-gradient(circle, #f97316 1.5px, transparent 1.5px)",
+                "radial-gradient(circle,rgb(0, 102, 245) 1.5px, transparent 1.5px)",
               backgroundSize: "32px 32px",
               opacity: 0.15,
             }}

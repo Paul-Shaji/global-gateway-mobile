@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { AlignLeft, X, Search, ChevronRight, ChevronLeft, GraduationCap, ChevronDown } from "lucide-react";
-import { allCountries, regions, type Country } from "@/data/countries";
+import { popularCountries, type Country } from "@/data/countries";
 import { universities, type University } from "@/data/universities";
 import { Button } from "@/components/ui/button";
 import { getFlagUrl, getFlagUrlFromName } from "@/lib/utils";
@@ -54,8 +54,8 @@ export function MobileNav() {
   };
 
   const filteredCountries = countrySearch
-    ? allCountries.filter(c => c.name.toLowerCase().includes(countrySearch.toLowerCase()))
-    : null;
+  ? popularCountries.filter(c => c.name.toLowerCase().includes(countrySearch.toLowerCase()))
+  : popularCountries;
 
   const filteredUniversities = uniSearch
     ? universities.filter(u =>
@@ -64,9 +64,7 @@ export function MobileNav() {
       )
     : universities;
 
-  const popularCountries = allCountries.filter(c =>
-    ["uk", "france", "japan", "spain", "italy"].includes(c.id)
-  );
+
 
   return (
     <>
@@ -84,7 +82,7 @@ export function MobileNav() {
 <nav className="hidden md:flex items-center gap-1">
   <div className="relative group">
     <button
-      className="px-3 py-2 text-sm font-medium transition-colors rounded-lg hover:bg-secondary text-primary-foreground flex items-center gap-1"
+      className="px-3 py-2 text-sm font-medium transition-colors rounded-lg hover:bg-gray-300 text-primary-foreground flex items-center gap-1"
     >
       Countries
       <ChevronDown className="h-4 w-4 opacity-60 group-hover:opacity-100 transition-opacity" />
@@ -107,36 +105,19 @@ export function MobileNav() {
       </div>
 
       {/* Country list */}
-      <div className="max-h-72 overflow-y-auto py-1">
-        {(countrySearch
-          ? allCountries.filter(c =>
-              c.name.toLowerCase().includes(countrySearch.toLowerCase())
-            )
-          : allCountries
-        ).map(c => (
-          <Link
-            key={c.id}
-            to={`/country/${c.id}`}
-            className="flex items-center gap-3 px-3 py-2.5 hover:bg-secondary transition-colors"
-            onClick={() => setCountrySearch("")}
-          >
-            <img
-              src={getFlagUrl(c.id, 40)}
-              alt={c.name}
-              className="w-8 h-6 rounded object-cover shrink-0"
-            />
-            <span className="text-sm font-medium text-foreground">{c.name}</span>
-            {/* {c.programCount && (
-              <span className="ml-auto text-xs text-muted-foreground">{c.programCount} programs</span>
-            )} */}
-          </Link>
-        ))}
-
-        {countrySearch &&
-          allCountries.filter(c =>
-            c.name.toLowerCase().includes(countrySearch.toLowerCase())
-          ).length === 0 && (
-          <p className="px-4 py-6 text-center text-sm text-muted-foreground">No countries found</p>
+            <div className="flex-1 overflow-y-auto">
+        {filteredCountries.length > 0 ? (
+          <div className="py-2">
+            {filteredCountries.map(c => (
+              <CountryItem
+                key={c.id}
+                country={c}
+                onClick={() => handleNavClick(`/country/${c.id}`)}
+              />
+            ))}
+          </div>
+        ) : (
+          <p className="p-8 text-center text-muted-foreground">No countries found</p>
         )}
       </div>
     </div>
@@ -150,7 +131,7 @@ export function MobileNav() {
     <Link
       key={item.label}
       to={item.path}
-      className="px-3 py-2 text-sm font-medium transition-colors rounded-lg hover:bg-secondary text-primary-foreground"
+      className="px-3 py-2 text-sm font-medium transition-colors rounded-lg hover:bg-gray-300 text-primary-foreground"
     >
       {item.label}
     </Link>
@@ -234,17 +215,7 @@ export function MobileNav() {
                           onToggle={() => toggleRegion("Popular Destinations")}
                           onCountryClick={id => handleNavClick(`/country/${id}`)}
                         />
-                        {regions.map(r => (
-                          <RegionSection
-                            key={r.name}
-                            title={`${r.name} (${r.countries.length})`}
-                            countries={r.countries}
-                            expanded={expandedRegions.includes(r.name)}
-                            onToggle={() => toggleRegion(r.name)}
-                            onCountryClick={id => handleNavClick(`/country/${id}`)}
-                            limit={5}
-                          />
-                        ))}
+
                       </>
                     )}
                   </div>
@@ -290,7 +261,6 @@ export function MobileNav() {
                     {[
                       { label: "Home", path: "/", icon: "🏠" },
                       { label: "About Us", path: "/about", icon: "ℹ️" },
-                      // { label: "Programs", path: "/programs", icon: "🎓" },
                       { label: "Student Stories", path: "/stories", icon: "💬" },
                       { label: "Contact an Advisor", path: "/contact", icon: "📞" },
                     ].map(item => (
@@ -313,15 +283,6 @@ export function MobileNav() {
                       <span className="text-base font-medium text-foreground group-hover:text-orange-500 transition-colors flex-1">Countries</span>
                       <ChevronRight className="h-4 w-4 text-orange-400" />
                     </button>
-                    <button
-                      onClick={() => setPanel("universities")}
-                      className="w-full flex items-center gap-4 px-5 py-3.5 hover:bg-orange-500/10 transition-colors text-left group"
-                    >
-                      <span className="text-lg w-7 text-center">🏛️</span>
-                      <span className="text-base font-medium text-foreground group-hover:text-orange-500 transition-colors flex-1">Universities</span>
-                      <ChevronRight className="h-4 w-4 text-orange-400" />
-                    </button>
-
                     {/* Divider */}
                     <div className="mx-5 my-4 border-t border-border" />
 
@@ -417,17 +378,7 @@ export function MobileNav() {
                           onToggle={() => toggleRegion("Popular Destinations")}
                           onCountryClick={id => handleNavClick(`/country/${id}`)}
                         />
-                        {regions.map(r => (
-                          <RegionSection
-                            key={r.name}
-                            title={`${r.name} (${r.countries.length})`}
-                            countries={r.countries}
-                            expanded={expandedRegions.includes(r.name)}
-                            onToggle={() => toggleRegion(r.name)}
-                            onCountryClick={id => handleNavClick(`/country/${id}`)}
-                            limit={5}
-                          />
-                        ))}
+                      
                       </>
                     )}
                   </div>

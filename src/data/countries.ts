@@ -20,6 +20,24 @@ export interface Region {
 }
 export const popularCountries: Country[] = [
   {
+    id: "au",
+    name: "Australia",
+    flag: "🇦🇺",
+    region: "Oceania",
+    tagline: "Adventure and world-class research",
+    description: "Australia consistently ranks among the top three destinations for international students worldwide. With seven universities in the global top 100, a safe and multicultural society, and a Temporary Graduate Visa that allows up to four years of post-study work depending on your qualification, Australia offers both academic excellence and lifestyle appeal. The country's strong economy and skills shortages in healthcare, engineering, and IT mean graduates often find direct pathways to permanent residency.",
+    heroImage: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=1200&q=80",
+    faqs: [
+      { question: "What are the tuition fees for international students in Australia?", answer: "Tuition fees range from AUD 20,000 to AUD 45,000 per year depending on the institution and course. Engineering, medicine, and MBA programmes tend to sit at the higher end. Group of Eight universities (including Melbourne, Sydney, and ANU) are generally more expensive but carry exceptional global recognition." },
+      { question: "How long can I stay in Australia after graduating?", answer: "Australia's Temporary Graduate Visa (subclass 485) allows graduates to stay and work for two to four years depending on where you studied and what you studied. Students who complete their degree in regional Australia may be eligible for an additional year of stay, and there are specific visa streams that can extend this further." },
+      { question: "Can international students work in Australia?", answer: "Yes. International students in Australia can work up to 48 hours per fortnight during their studies and unlimited hours during holidays. Australia's strong minimum wage — among the highest in the world — means part-time work genuinely contributes to covering living expenses." },
+      { question: "What IELTS score do I need for Australian universities?", answer: "Most Australian universities require an IELTS Academic overall score of 6.0 to 6.5, with no individual band below 6.0. Some competitive programmes and top-ranked universities require 7.0 or above. PTE Academic is widely accepted as an alternative and is often preferred by students for its shorter preparation time." },
+      { question: "What is the cost of living in Australia for students?", answer: "The Australian government requires student visa applicants to demonstrate AUD 21,041 per year in living funds. Realistically, living costs depend heavily on the city — Sydney and Melbourne are the most expensive at AUD 1,800–2,500 per month, while Adelaide, Brisbane, and Perth are more affordable at AUD 1,400–2,000 per month." },
+      { question: "Is permanent residency possible after studying in Australia?", answer: "Yes, and this is one of Australia's biggest drawcards. Graduates in skilled occupations on Australia's skills shortage list can apply for permanent residency through the Skilled Independent Visa (subclass 189) or the Employer Nomination Scheme. Healthcare, engineering, accounting, IT, and trades are consistently on the skills shortage list." },
+      { question: "What courses lead to the best job prospects in Australia?", answer: "Nursing, Medicine, Engineering, IT, Accounting, Construction Management, and Social Work consistently feature on Australia's skills shortage lists, making graduates in these fields eligible for both employment and permanent residency pathways. EC Overseas can help you identify which qualification gives you the best long-term outcome." },
+    ],
+  },
+  {
     id: "uk",
     name: "United Kingdom",
     flag: "🇬🇧",
@@ -73,26 +91,27 @@ export const popularCountries: Country[] = [
       { question: "What are the admission requirements for German universities?", answer: "Requirements vary by programme and university but generally include your undergraduate transcripts, a statement of purpose, letters of recommendation, and language proficiency proof (IELTS for English-taught programmes, TestDaF or Goethe-Zertifikat for German-taught programmes). Some universities require you to complete a Studienkolleg (foundation year) if your school-leaving certificate is not directly recognised. EC Overseas guides you through every step of this process." },
     ],
   },
+
   {
-    id: "australia",
-    name: "Australia",
-    flag: "🇦🇺",
-    region: "Oceania",
-    tagline: "Adventure and world-class research",
-    description: "Australia consistently ranks among the top three destinations for international students worldwide. With seven universities in the global top 100, a safe and multicultural society, and a Temporary Graduate Visa that allows up to four years of post-study work depending on your qualification, Australia offers both academic excellence and lifestyle appeal. The country's strong economy and skills shortages in healthcare, engineering, and IT mean graduates often find direct pathways to permanent residency.",
-    heroImage: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=1200&q=80",
+    id: "ca",
+    name: "Canada",
+    flag: "🇨🇦",
+    region: "North America",
+    tagline: "Multicultural society with top-ranked universities",
+    description: "Canada is the world's second-largest country and one of its most welcoming for international students. With top-ranked universities like the University of Toronto, McGill, and UBC, Canada offers academic excellence across every discipline. The Post-Graduation Work Permit (PGWP) allows graduates to work for up to three years, and Canada's Express Entry immigration system gives international graduates a significant advantage when applying for permanent residency — making it one of the clearest pathways from student to citizen anywhere in the world.",
+    heroImage: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=1200&q=80",
     faqs: [
-      { question: "What are the tuition fees for international students in Australia?", answer: "Tuition fees range from AUD 20,000 to AUD 45,000 per year depending on the institution and course. Engineering, medicine, and MBA programmes tend to sit at the higher end. Group of Eight universities (including Melbourne, Sydney, and ANU) are generally more expensive but carry exceptional global recognition." },
-      { question: "How long can I stay in Australia after graduating?", answer: "Australia's Temporary Graduate Visa (subclass 485) allows graduates to stay and work for two to four years depending on where you studied and what you studied. Students who complete their degree in regional Australia may be eligible for an additional year of stay, and there are specific visa streams that can extend this further." },
-      { question: "Can international students work in Australia?", answer: "Yes. International students in Australia can work up to 48 hours per fortnight during their studies and unlimited hours during holidays. Australia's strong minimum wage — among the highest in the world — means part-time work genuinely contributes to covering living expenses." },
-      { question: "What IELTS score do I need for Australian universities?", answer: "Most Australian universities require an IELTS Academic overall score of 6.0 to 6.5, with no individual band below 6.0. Some competitive programmes and top-ranked universities require 7.0 or above. PTE Academic is widely accepted as an alternative and is often preferred by students for its shorter preparation time." },
-      { question: "What is the cost of living in Australia for students?", answer: "The Australian government requires student visa applicants to demonstrate AUD 21,041 per year in living funds. Realistically, living costs depend heavily on the city — Sydney and Melbourne are the most expensive at AUD 1,800–2,500 per month, while Adelaide, Brisbane, and Perth are more affordable at AUD 1,400–2,000 per month." },
-      { question: "Is permanent residency possible after studying in Australia?", answer: "Yes, and this is one of Australia's biggest drawcards. Graduates in skilled occupations on Australia's skills shortage list can apply for permanent residency through the Skilled Independent Visa (subclass 189) or the Employer Nomination Scheme. Healthcare, engineering, accounting, IT, and trades are consistently on the skills shortage list." },
-      { question: "What courses lead to the best job prospects in Australia?", answer: "Nursing, Medicine, Engineering, IT, Accounting, Construction Management, and Social Work consistently feature on Australia's skills shortage lists, making graduates in these fields eligible for both employment and permanent residency pathways. EC Overseas can help you identify which qualification gives you the best long-term outcome." },
+      { question: "What are the tuition fees for international students in Canada?", answer: "Tuition fees vary significantly by province, university, and programme. Undergraduate programmes typically cost CAD 15,000–35,000 per year, while postgraduate programmes range from CAD 10,000–30,000. Quebec has historically lower fees than Ontario and British Columbia. Engineering, Business, and Computer Science tend to be at the higher end." },
+      { question: "What is the Post-Graduation Work Permit (PGWP) in Canada?", answer: "The PGWP allows international graduates from eligible Canadian institutions to work in Canada for a period equal to the length of their study programme, up to a maximum of three years. A three-year PGWP is the most common outcome for students who complete a two or three-year programme, and it provides the work experience needed to qualify for permanent residency." },
+      { question: "How does Express Entry work for international graduates in Canada?", answer: "Express Entry is Canada's primary pathway to permanent residency for skilled workers. Canadian work experience gained through the PGWP adds significant points to your Comprehensive Ranking System (CRS) score, making international graduates with Canadian experience highly competitive. The Canadian Experience Class stream is specifically designed for people who have lived and worked in Canada." },
+      { question: "What IELTS score do I need for Canadian universities?", answer: "Most Canadian universities require an IELTS Academic overall score of 6.0 to 6.5, with some competitive programmes requiring 7.0. Some universities also accept PTE Academic or TOEFL iBT. French-language universities in Quebec require proof of French proficiency instead." },
+      { question: "What is the cost of living in Canada for students?", answer: "The Canadian government requires student visa applicants to demonstrate CAD 10,000 per year in living funds (in addition to tuition), but realistic monthly costs are CAD 1,200–2,000 depending on the city. Toronto and Vancouver are the most expensive; cities like Halifax, Winnipeg, and Ottawa are considerably more affordable while still offering strong academic institutions." },
+      { question: "Can I work while studying in Canada?", answer: "Yes. International students with a valid study permit can work up to 20 hours per week off-campus during academic sessions and full-time during scheduled breaks. On-campus work is also permitted without restriction. Canada's strong minimum wage laws mean student employment genuinely contributes to living costs." },
+      { question: "What are the most in-demand courses in Canada for international students?", answer: "Information Technology, Data Science, Artificial Intelligence, Nursing, Engineering, Business Administration, and Supply Chain Management are consistently in high demand. Canada's tech corridor in Toronto-Waterloo, the financial sector in Calgary, and the healthcare system across all provinces create strong employment demand for graduates in these fields." },
     ],
   },
   {
-    id: "new-zealand",
+    id: "nz",
     name: "New Zealand",
     flag: "🇳🇿",
     region: "Oceania",
@@ -133,24 +152,7 @@ export const regions: Region[] = [
   {
     name: "North America",
     countries: [
-      {
-        id: "ca",
-        name: "Canada",
-        flag: "🇨🇦",
-        region: "North America",
-        tagline: "Multicultural society with top-ranked universities",
-        description: "Canada is the world's second-largest country and one of its most welcoming for international students. With top-ranked universities like the University of Toronto, McGill, and UBC, Canada offers academic excellence across every discipline. The Post-Graduation Work Permit (PGWP) allows graduates to work for up to three years, and Canada's Express Entry immigration system gives international graduates a significant advantage when applying for permanent residency — making it one of the clearest pathways from student to citizen anywhere in the world.",
-        heroImage: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=1200&q=80",
-        faqs: [
-          { question: "What are the tuition fees for international students in Canada?", answer: "Tuition fees vary significantly by province, university, and programme. Undergraduate programmes typically cost CAD 15,000–35,000 per year, while postgraduate programmes range from CAD 10,000–30,000. Quebec has historically lower fees than Ontario and British Columbia. Engineering, Business, and Computer Science tend to be at the higher end." },
-          { question: "What is the Post-Graduation Work Permit (PGWP) in Canada?", answer: "The PGWP allows international graduates from eligible Canadian institutions to work in Canada for a period equal to the length of their study programme, up to a maximum of three years. A three-year PGWP is the most common outcome for students who complete a two or three-year programme, and it provides the work experience needed to qualify for permanent residency." },
-          { question: "How does Express Entry work for international graduates in Canada?", answer: "Express Entry is Canada's primary pathway to permanent residency for skilled workers. Canadian work experience gained through the PGWP adds significant points to your Comprehensive Ranking System (CRS) score, making international graduates with Canadian experience highly competitive. The Canadian Experience Class stream is specifically designed for people who have lived and worked in Canada." },
-          { question: "What IELTS score do I need for Canadian universities?", answer: "Most Canadian universities require an IELTS Academic overall score of 6.0 to 6.5, with some competitive programmes requiring 7.0. Some universities also accept PTE Academic or TOEFL iBT. French-language universities in Quebec require proof of French proficiency instead." },
-          { question: "What is the cost of living in Canada for students?", answer: "The Canadian government requires student visa applicants to demonstrate CAD 10,000 per year in living funds (in addition to tuition), but realistic monthly costs are CAD 1,200–2,000 depending on the city. Toronto and Vancouver are the most expensive; cities like Halifax, Winnipeg, and Ottawa are considerably more affordable while still offering strong academic institutions." },
-          { question: "Can I work while studying in Canada?", answer: "Yes. International students with a valid study permit can work up to 20 hours per week off-campus during academic sessions and full-time during scheduled breaks. On-campus work is also permitted without restriction. Canada's strong minimum wage laws mean student employment genuinely contributes to living costs." },
-          { question: "What are the most in-demand courses in Canada for international students?", answer: "Information Technology, Data Science, Artificial Intelligence, Nursing, Engineering, Business Administration, and Supply Chain Management are consistently in high demand. Canada's tech corridor in Toronto-Waterloo, the financial sector in Calgary, and the healthcare system across all provinces create strong employment demand for graduates in these fields." },
-        ],
-      },
+     
     ],
   },
   {
